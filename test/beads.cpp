@@ -1,16 +1,18 @@
 #include "../src/outline_sphere.hpp"
 #include "../src/scene.hpp"
 #include <fstream>
-#include <iostream>
+
+#include <fmt/core.h>
+#include <fmt/ranges.h>
 #include <memory>
 #include <random>
-
+#include <vector>
 double dice()
 {
   std::random_device r;
   // Choose a random mean between 0.0 and 1.0 .
   std::default_random_engine e1(r());
-  std::uniform_real_distribution<double> unif(0.0, 1.0);
+  std::uniform_real_distribution<double> unif(0.0, 1);
 
   return unif(r);
 };
@@ -68,19 +70,23 @@ int main(int argc, char const* argv[])
 
   ln::Scene sc{};
 
-  for(int a = 0; a < 5; a++) {
-    auto n = 20;
+  for(int a = 0; a < 50; a++) {
+    auto n = 30;
     auto xs = lowPassNoise(n, 0.3, 4);
     auto ys = lowPassNoise(n, 0.3, 4);
     auto zs = lowPassNoise(n, 0.3, 4);
     auto ss = lowPassNoise(n, 0.3, 4);
+
+    //fmt::print("{}\n", ss);
     auto position = ln::Vec3{0, 0, 0};
     for(int i = 0; i < n; i++) {
       // auto sp = ln::outlineSphere{eye, up, position, 0.1};
       auto spp = std::make_shared<ln::outlineSphere>(ln::outlineSphere{eye, up, position, 0.1});
-      sc.Add(spp);
-      auto s = (ss[i] + 1.0) / (2 * 0.1) + 0.01;
+      sc.Add(std::move(spp));
+      auto s = (ss[i] + 1.0) / 2 * 0.1 + 0.01;
       auto v = ln::Vec3{xs[i], ys[i], zs[i]}.normalize() * s;
+      //fmt::print("{} [{} {} {}]\n", s, position.x, position.y, position.z);
+      //std::cout << s << "- [ " << position.x << ' ' << position.y << ' ' << position.z << " ]"  << std::endl;
       position = position + v;
     }
   }

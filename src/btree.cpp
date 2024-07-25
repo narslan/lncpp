@@ -3,6 +3,7 @@
 #include "box.hpp"
 #include "util.hpp"
 #include <algorithm>
+#include <iostream>
 #include <memory>
 
 namespace ln {
@@ -224,12 +225,13 @@ namespace ln {
     auto n1 = BNode{l1, lr.first, AxisNone, 0, r1};
     auto n2 = BNode{l2, lr.first, AxisNone, 0, r2};
 
-    _lft = std::make_shared<BNode>(n1);
-    _rgt = std::make_shared<BNode>(n2);
+    _lft = std::move(std::make_shared<BNode>(n1));
+    _rgt = std::move(std::make_shared<BNode>(n2));
 
     _lft->split(depth + 1);
     _rgt->split(depth + 1);
     _shapes.clear();
+    //std::cout << depth << std::endl;
     //In the go implementation there was a line that nullifies shapes member.
     // With a comment "only needed at leaf nodes"
     //this->_shapes = nullptr; //nullify at leaf nodes

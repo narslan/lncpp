@@ -43,6 +43,8 @@ foreach(_cubetarget cube)
  foreach(_beadstarget beads)
   add_executable(${_beadstarget} test/${_beadstarget}.cpp )
   target_sources(${_beadstarget} PUBLIC test/${_beadstarget}.cpp ${LN_SOURCES})
+  find_package(fmt)
+  target_link_libraries(${_beadstarget} PUBLIC fmt::fmt)
  endforeach()
 
  foreach(_outlinetarget outline)
