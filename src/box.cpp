@@ -9,6 +9,14 @@ namespace ln {
   box::box()
       : min_{}
       , max_{} {};
+
+  // box& box::operator=(box other)
+  // {
+  //   std::swap(min_, other.min_);
+  //   std::swap(max_, other.max_);
+  //   return *this;
+  // } //copy assignment
+
   Vec3 box::size() const
   {
     return max_ - min_;

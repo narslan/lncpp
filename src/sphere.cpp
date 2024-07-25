@@ -9,12 +9,8 @@ namespace ln {
   sphere::sphere(Vec3 center, double radius)
       : center_{center}
       , radius_{radius}
-      , box_{}
-  {
-    auto min = center - radius;
-    auto max = center + radius;
-    box_ = box{min, max};
-  }
+      , box_{center - radius, center + radius}
+  { }
 
   void sphere::compile(){};
   box sphere::boundingBox()
@@ -31,8 +27,8 @@ namespace ln {
     auto radius = radius_;
     auto to = r.origin_ - center_;
     auto b = to.dot(r.direction_);
-    auto c = to.dot(to) - radius * radius;
-    auto d = b * b - c;
+    auto c = to.dot(to) - (radius * radius);
+    auto d = (b * b) - c;
     if(d > 0) {
       d = std::sqrt(d);
       auto t1 = -b - d;

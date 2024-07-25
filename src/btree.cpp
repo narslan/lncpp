@@ -3,7 +3,6 @@
 #include "box.hpp"
 #include "util.hpp"
 #include <algorithm>
-#include <iostream>
 #include <memory>
 
 namespace ln {

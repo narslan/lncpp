@@ -29,8 +29,8 @@ namespace ln {
     for(double i = 0; i <= 360; i++) {
       double a = radians(i);
       auto p = c;
-      p = p + (u * std::cos(a) * r);
-      p = p + (v * std::sin(a) * r);
+      p = p + (u * (std::cos(a) * r));
+      p = p + (v * (std::sin(a) * r));
 
       path += p;
     }

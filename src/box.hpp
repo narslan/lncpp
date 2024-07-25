@@ -10,6 +10,8 @@ namespace ln {
   {
     box(Vec3 min, Vec3 max);
     box();
+    //box& operator=(box other);
+
     Vec3 size() const;
     Vec3 anchor(const Vec3& anch) const;
     Vec3 center() const;
