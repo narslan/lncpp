@@ -1,6 +1,5 @@
 #include "scene.hpp"
 #include "matrix.hpp"
-#include <iostream>
 #include <memory>
 
 namespace ln {
@@ -35,7 +34,7 @@ namespace ln {
   {
     return _tree.intersect(r);
   }
-  bool Scene::Visible(vector eye, vector point) const
+  bool Scene::Visible(Vec3 eye, Vec3 point) const
   {
     auto v = eye - point;
     auto r = ray{point, v.normalize()};
@@ -54,9 +53,9 @@ namespace ln {
     return result;
   };
 
-  Paths Scene::Render(vector eye,
-                      vector center,
-                      vector up,
+  Paths Scene::Render(Vec3 eye,
+                      Vec3 center,
+                      Vec3 up,
                       double width,
                       double height,
                       double fovy,
@@ -70,7 +69,7 @@ namespace ln {
     return RenderWithMatrix(m2, eye, width, height, step);
   };
 
-  Paths Scene::RenderWithMatrix(matrix m, vector eye, double width, double height, double step)
+  Paths Scene::RenderWithMatrix(matrix m, Vec3 eye, double width, double height, double step)
   {
     Compile();
     auto ps = GetPaths();

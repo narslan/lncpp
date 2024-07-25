@@ -17,9 +17,9 @@ double dice()
 
 int main(int argc, char const* argv[])
 {
-  auto eye = ln::vector{8, 8, 8};
-  auto center = ln::vector{0, 0, 0};
-  auto up = ln::vector{0, 0, 1};
+  auto eye = ln::Vec3{8, 8, 8};
+  auto center = ln::Vec3{0, 0, 0};
+  auto up = ln::Vec3{0, 0, 1};
   ln::Scene sc{};
 
   double n = 6.0;
@@ -29,7 +29,7 @@ int main(int argc, char const* argv[])
     for(double y = -n; y <= n; y++) {
       auto z = dice() * 3;
 
-      ln::vector v{x, y, z};
+      ln::Vec3 v{x, y, z};
       auto sp = ln::outlineSphere{eye, up, v, 0.45};
       auto spp = std::make_shared<ln::outlineSphere>(sp);
       sc.Add(spp);

@@ -1,15 +1,15 @@
 #pragma once
-#include "vector.hpp"
+#include "vec3.hpp"
 namespace ln {
   struct ray
   {
 public:
-    ray(vector o, vector d);
-    vector position(double t) const;
+    ray(Vec3 o, Vec3 d);
+    Vec3 position(double t) const;
 
     ~ray() = default;
-    vector origin_;
-    vector direction_;
+    Vec3 origin_;
+    Vec3 direction_;
   };
 
 } // namespace ln

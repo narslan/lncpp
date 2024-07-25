@@ -4,13 +4,13 @@ namespace ln {
   void EmptyShape::compile(){};
   box EmptyShape::boundingBox()
   {
-    vector v1{};
-    vector v2{};
+    Vec3 v1{};
+    Vec3 v2{};
     box b{v1, v2};
     return b;
   }
 
-  const bool EmptyShape::contains(const vector& v, double f)
+  const bool EmptyShape::contains(const Vec3& v, double f)
   {
     return false;
   }

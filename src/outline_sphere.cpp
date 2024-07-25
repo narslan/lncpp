@@ -1,9 +1,9 @@
 #include "outline_sphere.hpp"
 #include "util.hpp"
 #include <cmath>
-#include <iostream>
+
 namespace ln {
-  outlineSphere::outlineSphere(vector eye, vector up, vector center, double radius)
+  outlineSphere::outlineSphere(Vec3 eye, Vec3 up, Vec3 center, double radius)
       : eye_{eye}
       , up_{up}
       , sphere{center, radius}

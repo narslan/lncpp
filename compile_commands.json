@@ -1,0 +1,392 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/outline.dir/test/outline.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/outline.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/outline.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/outline.dir/test/outline.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/beads.dir/src/box.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/beads.dir/src/box.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/outline.dir/src/filter.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/filter.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/filter.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/outline.dir/src/filter.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/outline.dir/src/box.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/outline.dir/src/box.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/beads.dir/test/beads.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/beads.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/beads.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/beads.dir/test/beads.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/beads.dir/src/btree.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/beads.dir/src/btree.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/outline.dir/src/cube.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/cube.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/cube.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/outline.dir/src/cube.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/outline.dir/src/btree.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/outline.dir/src/btree.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/skyscrapers.dir/test/skyscrapers.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/skyscrapers.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/skyscrapers.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/skyscrapers.dir/test/skyscrapers.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/skyscrapers.dir/src/box.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/skyscrapers.dir/src/box.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/test/ln_test.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/ln_test.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/ln_test.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/test/ln_test.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/cube.dir/test/cube.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/cube.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/test/cube.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/cube.dir/test/cube.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/cube.dir/src/box.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/cube.dir/src/box.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/box.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/box.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/box.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/cube.dir/src/btree.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/cube.dir/src/btree.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/btree.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/btree.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/skyscrapers.dir/src/btree.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/btree.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/skyscrapers.dir/src/btree.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/cube.dir/src/cube.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/cube.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/cube.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/cube.dir/src/cube.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/cube.dir/src/filter.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/filter.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/filter.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/cube.dir/src/filter.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/cube.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/cube.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/cube.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/cube.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/filter.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/filter.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/filter.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/filter.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/cube.dir/src/outline_sphere.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/outline_sphere.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/outline_sphere.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/cube.dir/src/outline_sphere.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/outline_sphere.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/outline_sphere.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/outline_sphere.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/outline_sphere.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/paths.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/paths.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/paths.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/paths.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/path.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/path.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/path.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/path.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/ray.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/ray.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/ray.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/ray.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/scene.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/scene.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/scene.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/scene.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/shape.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/shape.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/shape.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/shape.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/sphere.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/sphere.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/sphere.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/sphere.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=gnu++23",
+      "-c",
+      "-o",
+      "CMakeFiles/ln_test.dir/src/util.cpp.o",
+      "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/util.cpp"
+    ],
+    "directory": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build",
+    "file": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/src/util.cpp",
+    "output": "/home/nevroz/go/src/github.com/narslan/2dgraph/lncpp/build/CMakeFiles/ln_test.dir/src/util.cpp.o"
+  }
+]

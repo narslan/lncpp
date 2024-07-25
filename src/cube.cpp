@@ -2,7 +2,7 @@
 
 namespace ln {
 
-  cube::cube(vector n, vector x)
+  cube::cube(Vec3 n, Vec3 x)
       : _min{n}
       , _max{x}
       , _b{n, x}
@@ -12,16 +12,16 @@ namespace ln {
   {
     return _b;
   }
-  const bool cube::contains(const vector& vec, double f)
+  const bool cube::contains(const Vec3& v, double f)
   {
-    auto v = vec.v_data;
-    if((v[0] < (_min.v_data[0] - f)) || (v[0] > (_max.v_data[0] + f))) {
+
+    if((v.x < (_min.x - f)) || (v.x > (_max.x + f))) {
       return false;
     }
-    if((v[1] < (_min.v_data[1] - f)) || (v[1] > (_max.v_data[1] + f))) {
+    if((v.y < (_min.y - f)) || (v.y > (_max.y + f))) {
       return false;
     }
-    if((v[2] < (_min.v_data[2] - f)) || (v[2] > (_max.v_data[2] + f))) {
+    if((v.z < (_min.z - f)) || (v.z > (_max.z + f))) {
       return false;
     }
     return true;
@@ -35,10 +35,9 @@ namespace ln {
 
     n = n.min(f);
     f = n.max(f);
-    auto nv = n.v_data;
-    auto fv = f.v_data;
-    auto t0 = std::max(std::max(nv[0], nv[1]), nv[2]);
-    auto t1 = std::min(std::min(fv[0], fv[1]), fv[2]);
+
+    auto t0 = std::max(std::max(n.x, n.y), n.z);
+    auto t1 = std::min(std::min(n.x, n.y), n.z);
 
     if((t0 < 1e-3) && (t1 > 1e-3)) {
       return hit(t1);
@@ -53,12 +52,12 @@ namespace ln {
 
   Paths cube::paths()
   {
-    auto x1 = _min.v_data[0];
-    auto y1 = _min.v_data[1];
-    auto z1 = _min.v_data[2];
-    auto x2 = _max.v_data[0];
-    auto y2 = _max.v_data[1];
-    auto z2 = _max.v_data[2];
+    auto x1 = _min.x;
+    auto y1 = _min.y;
+    auto z1 = _min.z;
+    auto x2 = _max.x;
+    auto y2 = _max.y;
+    auto z2 = _max.z;
     return Paths{{{x1, y1, z1}, {x1, y1, z2}},
                  {{x1, y1, z1}, {x1, y2, z1}},
                  {{x1, y1, z1}, {x2, y1, z1}},

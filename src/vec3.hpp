@@ -29,6 +29,10 @@ namespace ln {
 
     //Vec3al operations
 
+    constexpr bool operator==(const Vec3& rhs) const
+    {
+      return x == rhs.x && y == rhs.y && z == rhs.z;
+    }
     constexpr Vec3 operator+(const Vec3& rhs) const
     {
       return Vec3{x + rhs.x, y + rhs.y, z + rhs.z};
@@ -175,17 +179,15 @@ namespace ln {
       }
       return Vec3{0, 0, 1};
     };
-
-    //This is an additional external vector constructor for making random vectors.
-    Vec3 randomUnitVector()
-    {
-      std::random_device r;
-      // Choose a random mean between 0.0 and 1.0 .
-      std::default_random_engine e1(r());
-      std::uniform_real_distribution<double> dist(1.0, 100.0);
-
-      return Vec3{dist(r), dist(r), dist(r)}.normalize();
-    };
   };
+  //This is an additional external vector constructor for making random vectors.
+  inline Vec3 randomUnitVector()
+  {
+    std::random_device r;
+    // Choose a random mean between 0.0 and 1.0 .
+    std::default_random_engine e1(r());
+    std::uniform_real_distribution<double> dist(1.0, 100.0);
 
+    return Vec3{dist(r), dist(r), dist(r)}.normalize();
+  };
 } // namespace ln

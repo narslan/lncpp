@@ -15,7 +15,7 @@ double dice()
   return unif(r);
 };
 
-std::vector<double> normalize(const std::vector<double> values, double a, double b)
+std::vector<double> normalize(const std::vector<double>& values, double a, double b)
 {
   std::vector<double> result(values.size(), 0.0);
   auto lo = values.front();
@@ -62,25 +62,25 @@ std::vector<double> lowPassNoise(int n, double alpha, int iterations)
 int main(int argc, char const* argv[])
 {
 
-  auto eye = ln::vector{8, 8, 8};
-  auto center = ln::vector{0, 0, 0};
-  auto up = ln::vector{0, 0, 1};
+  auto eye = ln::Vec3{8, 8, 8};
+  auto center = ln::Vec3{0, 0, 0};
+  auto up = ln::Vec3{0, 0, 1};
 
   ln::Scene sc{};
 
   for(int a = 0; a < 5; a++) {
-    auto n = 25;
-    // auto xs = lowPassNoise(n, 0.3, 4);
-    // auto ys = lowPassNoise(n, 0.3, 4);
-    // auto zs = lowPassNoise(n, 0.3, 4);
-    // auto ss = lowPassNoise(n, 0.3, 4);
-    auto position = ln::vector{0, 0, 0};
+    auto n = 20;
+    auto xs = lowPassNoise(n, 0.3, 4);
+    auto ys = lowPassNoise(n, 0.3, 4);
+    auto zs = lowPassNoise(n, 0.3, 4);
+    auto ss = lowPassNoise(n, 0.3, 4);
+    auto position = ln::Vec3{0, 0, 0};
     for(int i = 0; i < n; i++) {
       // auto sp = ln::outlineSphere{eye, up, position, 0.1};
       auto spp = std::make_shared<ln::outlineSphere>(ln::outlineSphere{eye, up, position, 0.1});
       sc.Add(spp);
-      auto s = (i + 1.0) / (2 * 0.1) + 0.01;
-      auto v = ln::vector{dice(), dice(), dice()}.normalize() * s;
+      auto s = (ss[i] + 1.0) / (2 * 0.1) + 0.01;
+      auto v = ln::Vec3{xs[i], ys[i], zs[i]}.normalize() * s;
       position = position + v;
     }
   }
@@ -98,11 +98,11 @@ int main(int argc, char const* argv[])
 // int main(int argc, char const* argv[])
 // {
 
-//   auto eye = ln::vector{8, 8, 8};
-//   auto center = ln::vector{0, 0, 0};
-//   auto up = ln::vector{0, 0, 1};
+//   auto eye = ln::Vec3{8, 8, 8};
+//   auto center = ln::Vec3{0, 0, 0};
+//   auto up = ln::Vec3{0, 0, 1};
 //   ln::Scene sc{};
-//   auto position = ln::vector{0, 0, 0};
+//   auto position = ln::Vec3{0, 0, 0};
 //   auto spp = std::make_shared<ln::outlineSphere>(ln::outlineSphere{eye, up, position, 0.1});
 //   sc.Add(spp);
 

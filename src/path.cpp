@@ -1,13 +1,15 @@
 #include "path.hpp"
 #include "paths.hpp"
+
 #include <format>
 #include <iostream>
+
 namespace ln {
-  Path::Path(std::initializer_list<vector> _vectors)
+  Path::Path(std::initializer_list<Vec3> _vectors)
       : p{_vectors}
   { }
 
-  Path::Path(const std::vector<vector>&& other)
+  Path::Path(const std::vector<Vec3>&& other)
   {
 
     p = std::move(other);
@@ -21,7 +23,7 @@ namespace ln {
     return *(this);
   };
 
-  Path& Path::operator+=(const vector& rhs)
+  Path& Path::operator+=(const Vec3& rhs)
   {
     p.push_back(rhs);
     return *(this);
@@ -38,7 +40,7 @@ namespace ln {
   void Path::print() const
   {
     for(auto v : p) {
-      std::cout << std::format("{:.6f},{:.6f};", v.v_data[0], v.v_data[1]) << '\n';
+      std::cout << std::format("{:.6f},{:.6f};", v.x, v.y) << '\n';
     }
   }
 
@@ -47,9 +49,7 @@ namespace ln {
     const int precision{2};
     const int width{15};
     std::string points;
-    auto svg = [](const vector& v) {
-      return std::format("{:.6f},{:.6f}", v.v_data[0], v.v_data[1]);
-    };
+    auto svg = [](const Vec3& v) { return std::format("{:.6f},{:.6f}", v.x, v.y); };
     for(auto el : p) {
       points += svg(el);
       points += ' ';
@@ -60,8 +60,8 @@ namespace ln {
 
   Path Path::transform(const matrix& m) const
   {
-    std::vector<vector> tv;
-    auto mul = [&m](const vector& v) { return m.mulPosition(v); };
+    std::vector<Vec3> tv;
+    auto mul = [&m](const Vec3& v) { return m.mulPosition(v); };
     for(auto el : p) {
       tv.push_back(mul(el));
     }
@@ -70,7 +70,7 @@ namespace ln {
 
   Path Path::chop(double step) const
   {
-    std::vector<vector> result;
+    std::vector<Vec3> result;
     for(int i = 0; i < p.size() - 1; i++) {
       auto a = p[i];
       auto b = p[i + 1];
@@ -136,15 +136,15 @@ namespace ln {
     }
 
     if(distance > threshold) {
-      auto v1 = std::vector<vector>(p.begin(), p.begin() + index + 1);
+      auto v1 = std::vector<Vec3>(p.begin(), p.begin() + index + 1);
       auto p1 = Path{std::move(v1)};
       auto r1 = p1.simplify(threshold);
 
-      auto v2 = std::vector<vector>(p.begin() + index, p.end());
+      auto v2 = std::vector<Vec3>(p.begin() + index, p.end());
       auto p2 = Path{std::move(v2)};
       auto r2 = p2.simplify(threshold);
 
-      auto res = std::vector<vector>(r1.p.begin(), r1.p.end() - 1);
+      auto res = std::vector<Vec3>(r1.p.begin(), r1.p.end() - 1);
       auto p3 = Path{std::move(res)};
       p3 += r2;
       return p3;

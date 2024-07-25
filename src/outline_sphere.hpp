@@ -4,11 +4,11 @@ namespace ln {
 
   struct outlineSphere : sphere
   {
-    outlineSphere(vector eye, vector up, vector center, double radius);
+    outlineSphere(Vec3 eye, Vec3 up, Vec3 center, double radius);
     ~outlineSphere() = default;
 
-    vector eye_;
-    vector up_;
+    Vec3 eye_;
+    Vec3 up_;
     Paths paths() override;
   };
 } // namespace ln

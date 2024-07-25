@@ -44,20 +44,20 @@ namespace ln {
   {
     double tsplit;
     bool leftFirst;
-    auto org = r.origin_.v_data;
-    auto dir = r.direction_.v_data;
+    auto org = r.origin_;
+    auto dir = r.direction_;
     switch(_axis) {
     case AxisNone:
       return intersectShapes(r);
     case AxisX:
-      tsplit = (_point - org[0]) / dir[0];
-      leftFirst = (org[0] < _point) || (org[0] == _point && dir[0] <= 0);
+      tsplit = (_point - org.x) / dir.x;
+      leftFirst = (org.x < _point) || (org.x == _point && dir.x <= 0);
     case AxisY:
-      tsplit = (_point - org[1]) / dir[1];
-      leftFirst = (org[1] < _point) || (org[1] == _point && dir[1] <= 0);
+      tsplit = (_point - org.y) / dir.y;
+      leftFirst = (org.y < _point) || (org.y == _point && dir.y <= 0);
     case AxisZ:
-      tsplit = (_point - org[2]) / dir[2];
-      leftFirst = (org[2] < _point) || (org[2] == _point && dir[2] <= 0);
+      tsplit = (_point - org.z) / dir.z;
+      leftFirst = (org.z < _point) || (org.z == _point && dir.z <= 0);
     }
 
     // std::shared_ptr<BNode> first = std::make_shared<BNode>();
@@ -167,12 +167,12 @@ namespace ln {
 
     for(auto shape : _shapes) {
       auto b = shape->boundingBox();
-      xs.push_back(b.min_.v_data[0]);
-      xs.push_back(b.max_.v_data[0]);
-      ys.push_back(b.min_.v_data[1]);
-      ys.push_back(b.max_.v_data[1]);
-      zs.push_back(b.min_.v_data[2]);
-      zs.push_back(b.max_.v_data[2]);
+      xs.push_back(b.min_.x);
+      xs.push_back(b.max_.x);
+      ys.push_back(b.min_.y);
+      ys.push_back(b.max_.y);
+      zs.push_back(b.min_.z);
+      zs.push_back(b.max_.z);
     }
     //TODO: check if we need sorting
     std::sort(xs.begin(), xs.end());

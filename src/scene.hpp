@@ -13,18 +13,18 @@ public:
     void Compile();
     void Add(std::shared_ptr<Shape>);
     hit Intersect(const ray&) const;
-    bool Visible(vector eye, vector point) const;
+    bool Visible(Vec3 eye, Vec3 point) const;
     Paths GetPaths() const;
-    Paths Render(vector eye,
-                 vector center,
-                 vector up,
+    Paths Render(Vec3 eye,
+                 Vec3 center,
+                 Vec3 up,
                  double width,
                  double height,
                  double fovy,
                  double near,
                  double far,
                  double step);
-    Paths RenderWithMatrix(matrix m, vector eye, double width, double height, double step);
+    Paths RenderWithMatrix(matrix m, Vec3 eye, double width, double height, double step);
 
     unsigned Size();
 

@@ -1,12 +1,12 @@
 #include "sphere.hpp"
 #include "paths.hpp"
 #include "util.hpp"
-#include "vector.hpp"
+#include "vec3.hpp"
 #include <cmath>
 
 namespace ln {
 
-  sphere::sphere(vector center, double radius)
+  sphere::sphere(Vec3 center, double radius)
       : center_{center}
       , radius_{radius}
       , box_{}
@@ -21,7 +21,7 @@ namespace ln {
   {
     return box_;
   };
-  const bool sphere::contains(const vector& v, double f)
+  const bool sphere::contains(const Vec3& v, double f)
   {
     return (v - center_).length() <= radius_ + f;
   };
@@ -56,7 +56,7 @@ namespace ln {
     for(double lat = -90 + o; lat <= 90 - o; lat += n) {
       Path path{};
       for(double lng = 0; lng <= 360; lng += n) {
-        const vector v = latLngToXYZ(lat, lng, radius_) + center_;
+        const Vec3 v = latLngToXYZ(lat, lng, radius_) + center_;
         path += v;
       }
       paths += path;
@@ -65,7 +65,7 @@ namespace ln {
     for(double lng = 0; lng <= 360; lng += n) {
       Path path{};
       for(double lat = -90 + o; lng <= 90 - o; lat++) {
-        const vector v = latLngToXYZ(lat, lng, radius_) + center_;
+        const Vec3 v = latLngToXYZ(lat, lng, radius_) + center_;
         path += v;
       }
       paths += path;

@@ -3,25 +3,25 @@
 #include <stdexcept>
 #include <utility>
 namespace ln {
-  box::box(vector min, vector max)
+  box::box(Vec3 min, Vec3 max)
       : min_(min)
       , max_(max){};
   box::box()
       : min_{}
       , max_{} {};
-  vector box::size() const
+  Vec3 box::size() const
   {
     return max_ - min_;
   };
 
-  vector box::anchor(const vector& anch) const
+  Vec3 box::anchor(const Vec3& anch) const
   {
     return min_ + this->size() * anch;
   };
 
-  vector box::center() const
+  Vec3 box::center() const
   {
-    return this->anchor(vector{0.5, 0.5, 0.5});
+    return this->anchor(Vec3{0.5, 0.5, 0.5});
   };
 
   box box::extend(const box& b) const
@@ -31,7 +31,7 @@ namespace ln {
     return box{mnn, mxx};
   };
 
-  bool box::contains(const vector& vec) const
+  bool box::contains(const Vec3& vec) const
   {
     return ((vec.max(max_) == max_) && (vec.min(min_) == min_));
   };
@@ -50,17 +50,17 @@ namespace ln {
     bool right;
     switch(ax) {
     case AxisX /*case*/:
-      left = min_.v_data[0] <= point;
-      right = max_.v_data[0] >= point;
+      left = min_.x <= point;
+      right = max_.x >= point;
       break;
     case AxisY /*case*/:
-      left = min_.v_data[1] <= point;
-      right = max_.v_data[1] >= point;
+      left = min_.y <= point;
+      right = max_.y >= point;
       break;
 
     case AxisZ /*case*/:
-      left = min_.v_data[2] <= point;
-      right = max_.v_data[2] >= point;
+      left = min_.z <= point;
+      right = max_.z >= point;
       break;
     case AxisNone:
       std::runtime_error(" should not reach here AxisNone");

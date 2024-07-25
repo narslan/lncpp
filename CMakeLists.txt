@@ -18,14 +18,14 @@ file(GLOB LN_SOURCES  "src/*.cpp" "src/*.hpp" )
 # endforeach()
 
 
-foreach(_target example)
-  add_executable(${_target} test/${_target}.cpp )
-  target_sources(${_target} PUBLIC test/${_target}.cpp  
-    ${ARCH_SOURCES}
-  )
-  target_link_libraries(${_target} blend2d::blend2d )  
-  find_package(blend2d)
-endforeach()
+# foreach(_target example)
+#   add_executable(${_target} test/${_target}.cpp )
+#   target_sources(${_target} PUBLIC test/${_target}.cpp  
+#     ${ARCH_SOURCES}
+#   )
+#   target_link_libraries(${_target} blend2d::blend2d )  
+#   find_package(blend2d)
+# endforeach()
 
 
 foreach(_cpptarget ln_test)

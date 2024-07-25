@@ -3,17 +3,16 @@
 #include "box.hpp"
 #include "filter.hpp"
 #include "matrix.hpp"
-#include <vector>
+#include "vec3.hpp"
 
 namespace ln {
   class Paths;
   struct Path
   {
-public:
-    Path(std::initializer_list<vector>);
-    Path(const std::vector<vector>&&);
+    Path(std::initializer_list<Vec3>);
+    Path(const std::vector<Vec3>&&);
     Path& operator+=(const Path& rhs);
-    Path& operator+=(const vector& rhs);
+    Path& operator+=(const Vec3& rhs);
     ~Path() = default;
 
     box boundingBox() const;
@@ -24,7 +23,7 @@ public:
     Paths filter(Filter& f) const;
     Path simplify(double) const;
 
-    std::vector<vector> p;
+    std::vector<Vec3> p;
   };
 
 } // namespace ln

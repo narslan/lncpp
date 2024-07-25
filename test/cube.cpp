@@ -11,9 +11,9 @@ int main(int argc, char const* argv[])
   ln::Scene s{};
   s.Add(cs);
   // define camera parameters
-  ln::vector eye{4, 3, 2}; // camera position
-  ln::vector center{0, 0, 0}; // camera looks at
-  ln::vector up{0, 0, 1}; // up direction
+  ln::Vec3 eye{4, 3, 2}; // camera position
+  ln::Vec3 center{0, 0, 0}; // camera looks at
+  ln::Vec3 up{0, 0, 1}; // up direction
 
   // define rendering parameters
   auto width = 1024.0; // rendered width

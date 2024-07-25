@@ -1,4 +1,5 @@
 #include "util.hpp"
+#include "vec3.hpp"
 #include <algorithm>
 #include <cmath>
 
@@ -21,7 +22,7 @@ namespace ln {
     return v[n];
   }
 
-  const vector latLngToXYZ(double latd, double lngd, double radius)
+  const Vec3 latLngToXYZ(double latd, double lngd, double radius)
   {
 
     auto lat = radians(latd);
@@ -29,6 +30,6 @@ namespace ln {
     auto x = radius * std::cos(lat) * std::cos(lng);
     auto y = radius * std::cos(lat) * std::sin(lng);
     auto z = radius * std::sin(lat);
-    return vector{x, y, z};
+    return Vec3{x, y, z};
   }
 } // namespace ln

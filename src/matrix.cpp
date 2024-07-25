@@ -6,7 +6,7 @@
 #include <random>
 namespace ln {
 
-  auto dice()
+  double dice()
   {
     static std::uniform_real_distribution<double> distr{0, 1};
     static std::random_device device;
@@ -74,21 +74,21 @@ namespace ln {
     std::generate(v.begin(), v.end(), id);
     return matrix(std::move(v));
   }
-  matrix translatev(const vector& vec)
+  matrix translatev(const Vec3& vec)
   {
     matrix id = identity();
-    id.m_data[3] = vec.v_data[0];
-    id.m_data[7] = vec.v_data[1];
-    id.m_data[11] = vec.v_data[2];
+    id.m_data[3] = vec.x;
+    id.m_data[7] = vec.y;
+    id.m_data[11] = vec.z;
     return id;
   };
 
-  matrix scalev(const vector& vec)
+  matrix scalev(const Vec3& vec)
   {
     matrix id = identity();
-    id.m_data[0] = vec.v_data[0];
-    id.m_data[5] = vec.v_data[1];
-    id.m_data[10] = vec.v_data[2];
+    id.m_data[0] = vec.x;
+    id.m_data[5] = vec.y;
+    id.m_data[10] = vec.z;
     return id;
   };
 
@@ -108,22 +108,22 @@ namespace ln {
     }
   }
 
-  matrix rotatev(const vector& vec, double angle)
+  matrix rotatev(const Vec3& vec, double angle)
   {
-    auto v = vec.normalize().v_data;
+    auto v = vec.normalize();
     auto s = std::sin(angle);
     auto c = std::cos(angle);
     auto m = 1 - c;
 
     //first row
     std::array<double, 4> m1{
-        m * v[0] * v[0] + c, m * v[0] * v[1] + v[2] * s, m * v[2] * v[0] - v[1] * s, 0};
+        m * v.x * v.x + c, m * v.x * v.y + v.z * s, m * v.z * v.x - v.y * s, 0};
     //second row
     std::array<double, 4> m2{
-        m * v[0] * v[1] - v[2] * s, m * v[1] * v[1] + c, m * v[1] * v[2] + v[0] * s, 0};
+        m * v.x * v.y - v.z * s, m * v.y * v.y + c, m * v.y * v.z + v.x * s, 0};
     //third row
     std::array<double, 4> m3{
-        m * v[2] * v[0] + v[1] * s, m * v[1] * v[2] - v[0] * s, m * v[2] * v[2] + c, 0};
+        m * v.z * v.x + v.y * s, m * v.y * v.z - v.x * s, m * v.z * v.z + c, 0};
     //fourth row
     std::array<double, 4> m4{0, 0, 0, 1};
     std::array<double, 16> rot_matrix = array_cat(m1, m2, m3, m4);
@@ -183,45 +183,31 @@ namespace ln {
 
     return f;
   }
-  vector matrix::mulPosition(const vector& b) const
+  Vec3 matrix::mulPosition(const Vec3& v) const
   {
-    auto v = b.v_data;
-    auto x = m_data[0] * v[0] + m_data[1] * v[1] + m_data[2] * v[2] + m_data[3];
-    auto y = m_data[4] * v[0] + m_data[5] * v[1] + m_data[6] * v[2] + m_data[7];
-    auto z = m_data[8] * v[0] + m_data[9] * v[1] + m_data[10] * v[2] + m_data[11];
-    return vector{x, y, z};
+
+    auto x = m_data[0] * v.x + m_data[1] * v.y + m_data[2] * v.z + m_data[3];
+    auto y = m_data[4] * v.x + m_data[5] * v.y + m_data[6] * v.z + m_data[7];
+    auto z = m_data[8] * v.x + m_data[9] * v.y + m_data[10] * v.z + m_data[11];
+    return Vec3{x, y, z};
   }
-  vector matrix::mulPositionW(const vector& b) const
+  Vec3 matrix::mulPositionW(const Vec3& v) const
   {
-    auto v = b.v_data;
-    auto x = m_data[0] * v[0] + m_data[1] * v[1] + m_data[2] * v[2] + m_data[3];
-    auto y = m_data[4] * v[0] + m_data[5] * v[1] + m_data[6] * v[2] + m_data[7];
-    auto z = m_data[8] * v[0] + m_data[9] * v[1] + m_data[10] * v[2] + m_data[11];
-    auto w = m_data[12] * v[0] + m_data[13] * v[1] + m_data[14] * v[2] + m_data[15];
-    return vector{x, y, z} / w;
+
+    auto x = m_data[0] * v.x + m_data[1] * v.y + m_data[2] * v.z + m_data[3];
+    auto y = m_data[4] * v.x + m_data[5] * v.y + m_data[6] * v.z + m_data[7];
+    auto z = m_data[8] * v.x + m_data[9] * v.y + m_data[10] * v.z + m_data[11];
+    auto w = m_data[12] * v.x + m_data[13] * v.y + m_data[14] * v.z + m_data[15];
+    return Vec3{x, y, z} / w;
   }
-  matrix lookAt(vector eye, vector center, vector ups)
+  matrix lookAt(Vec3 eye, Vec3 center, Vec3 ups)
   {
     auto up = ups.normalize();
     auto f = (center - eye).normalize();
     auto s = f.cross(up).normalize();
     auto u = s.cross(f).normalize();
-    std::array<double, 16> pre{s.v_data[0],
-                               u.v_data[0],
-                               -f.v_data[0],
-                               eye.v_data[0],
-                               s.v_data[1],
-                               u.v_data[1],
-                               -f.v_data[1],
-                               eye.v_data[1],
-                               s.v_data[2],
-                               u.v_data[2],
-                               -f.v_data[2],
-                               eye.v_data[2],
-                               0,
-                               0,
-                               0,
-                               1};
+    std::array<double, 16> pre{
+        s.x, u.x, -f.x, eye.x, s.y, u.y, -f.y, eye.y, s.z, u.z, -f.z, eye.z, 0, 0, 0, 1};
     auto m = matrix{std::move(pre)};
 
     return m.inverse();
@@ -272,19 +258,19 @@ namespace ln {
     return matrix{std::move(mul)};
   };
 
-  matrix matrix::translate(const vector& v) const
+  matrix matrix::translate(const Vec3& v) const
   {
     auto t = translatev(v);
     return t * *(this);
   }
 
-  matrix matrix::scale(const vector& v) const
+  matrix matrix::scale(const Vec3& v) const
   {
     auto s = scalev(v);
     return s * *(this);
   }
 
-  matrix matrix::rotate(const vector& v, double a) const
+  matrix matrix::rotate(const Vec3& v, double a) const
   {
     auto r = rotatev(v, a);
     return r * *(this);

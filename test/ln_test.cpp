@@ -11,9 +11,9 @@
 
 TEST_CASE("vector constructor tests", "[vector]")
 {
-  ln::vector v{};
-  ln::vector v2{2.0, 3.0, 4.0};
-  ln::vector v3{1.0, 1.0, 1.0};
+  ln::Vec3 v{};
+  ln::Vec3 v2{2.0, 3.0, 4.0};
+  ln::Vec3 v3{1.0, 1.0, 1.0};
   auto v4 = v2.normalize();
   auto v5 = ln::randomUnitVector();
 
@@ -27,8 +27,8 @@ TEST_CASE("vector constructor tests", "[vector]")
 TEST_CASE("vectoral operations on vectors", "[vector]")
 {
 
-  ln::vector v1{1.0, 1.0, 1.0};
-  ln::vector v2{1.0, 1.0, 1.0};
+  ln::Vec3 v1{1.0, 1.0, 1.0};
+  ln::Vec3 v2{1.0, 1.0, 1.0};
   auto v3 = v1 + v2;
   auto v4 = v1 - v2;
   auto v5 = v1 * v2;
@@ -44,7 +44,7 @@ TEST_CASE("scalar operations on vectors", "[vector]")
 {
 
   const double scalar = 1;
-  ln::vector v1{1.0, 1.0, 1.0};
+  ln::Vec3 v1{1.0, 1.0, 1.0};
 
   auto v3 = v1 + 1;
   auto v4 = v1 - 1;
@@ -60,11 +60,11 @@ TEST_CASE("scalar operations on vectors", "[vector]")
 TEST_CASE("vectoral and scalar min-max operations on vectors", "[vector]")
 {
 
-  ln::vector v1{1.0, 1.0, 1.0};
-  ln::vector v2{2.0, 2.0, 2.0};
+  ln::Vec3 v1{1.0, 1.0, 1.0};
+  ln::Vec3 v2{2.0, 2.0, 2.0};
   auto v3 = v1.min(v2);
   auto v4 = v1.max(v2);
-  ln::vector v5{10.0, 9.0, 8.0};
+  ln::Vec3 v5{10.0, 9.0, 8.0};
   auto s5 = v5.minComponent();
 
   REQUIRE(v3.lengthSquared() == 3.0);
@@ -76,9 +76,9 @@ TEST_CASE("complex operations on vectors", "[vector]")
 {
 
   //find minAxis
-  ln::vector v1{1.0, 2.0, 3.0};
-  ln::vector v2{3.0, 2.0, 3.0};
-  ln::vector v3{3.0, 2.0, 1.0};
+  ln::Vec3 v1{1.0, 2.0, 3.0};
+  ln::Vec3 v2{3.0, 2.0, 3.0};
+  ln::Vec3 v3{3.0, 2.0, 1.0};
   auto v4 = v1.minAxis() + v2.minAxis() + v3.minAxis();
 
   REQUIRE(v4.lengthSquared() == 3.0);
@@ -90,7 +90,7 @@ TEST_CASE("complex operations on vectors", "[vector]")
   REQUIRE(s6 == 16.0);
 
   //check divide by zero exceptions.
-  ln::vector v0{0.0, 2.0, 3.0};
+  ln::Vec3 v0{0.0, 2.0, 3.0};
   REQUIRE_THROWS_WITH(v1 / v0, "divide by zero");
   REQUIRE_THROWS_WITH(v1 / 0.0, "divide by zero");
 
@@ -101,11 +101,11 @@ TEST_CASE("complex operations on vectors", "[vector]")
 
 TEST_CASE("print operations on paths", "[path]")
 {
-  ln::vector v1{1.1, 2.1, 3.0};
-  ln::vector v2{3.01, 2.19, 3.0};
-  ln::vector v3{5.0, 2.0, 3.0};
-  ln::vector v4{6.0, 2.0, 3.0};
-  ln::vector v5{7.0, 2.0, 3.0};
+  ln::Vec3 v1{1.1, 2.1, 3.0};
+  ln::Vec3 v2{3.01, 2.19, 3.0};
+  ln::Vec3 v3{5.0, 2.0, 3.0};
+  ln::Vec3 v4{6.0, 2.0, 3.0};
+  ln::Vec3 v5{7.0, 2.0, 3.0};
   ln::Path p{v1, v2, v3, v4, v5};
 
   //bounding box
@@ -125,8 +125,8 @@ TEST_CASE("print operations on paths", "[path]")
 TEST_CASE("paths test with a cube", "[paths]")
 {
 
-  ln::vector v1{-400.0, -400.0, -400.0};
-  ln::vector v2{400.0, 400.0, 400.0};
+  ln::Vec3 v1{-400.0, -400.0, -400.0};
+  ln::Vec3 v2{400.0, 400.0, 400.0};
   ln::cube c{v1, v2};
   ln::Paths p = c.paths();
   std::cout << p.toSVG(600, 600);
@@ -147,7 +147,7 @@ TEST_CASE("print matrix", "[matrix]")
   std::cout << i;
   // translate
   std::cout << "------ translate ----- \n";
-  ln::vector v1{4.0, 2.0, 3.0};
+  ln::Vec3 v1{4.0, 2.0, 3.0};
   auto mt1 = ln::translatev(v1);
   std::cout << mt1;
   // scale
@@ -170,13 +170,13 @@ TEST_CASE("matrix operations", "[matrix]")
   std::cout << i;
 
   std::cout << "------ rotate ----- \n";
-  ln::vector v1{1.0, 1.0, 1.0};
+  ln::Vec3 v1{1.0, 1.0, 1.0};
   auto mt3 = ln::rotatev(v1, 2 * std::numbers::pi);
   std::cout << mt3;
   std::cout << "------ lookat ----- \n";
-  ln::vector eye{0.5, 0.5, 0.9};
-  ln::vector center{0.1, 0.1, 0.2};
-  ln::vector up{0.3, 0.1, 0.05};
+  ln::Vec3 eye{0.5, 0.5, 0.9};
+  ln::Vec3 center{0.1, 0.1, 0.2};
+  ln::Vec3 up{0.3, 0.1, 0.05};
   auto mt4 = ln::lookAt(eye, center, up);
   std::cout << mt4;
 
