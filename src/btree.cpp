@@ -48,16 +48,20 @@ namespace ln {
     auto dir = r.direction_;
     switch(_axis) {
     case AxisNone:
+      std::cout << "axisnone\n";
       return intersectShapes(r);
     case AxisX:
       tsplit = (_point - org.x) / dir.x;
       leftFirst = (org.x < _point) || (org.x == _point && dir.x <= 0);
+      break;
     case AxisY:
       tsplit = (_point - org.y) / dir.y;
       leftFirst = (org.y < _point) || (org.y == _point && dir.y <= 0);
+      break;
     case AxisZ:
       tsplit = (_point - org.z) / dir.z;
       leftFirst = (org.z < _point) || (org.z == _point && dir.z <= 0);
+      break;
     }
 
     // std::shared_ptr<BNode> first = std::make_shared<BNode>();
@@ -217,12 +221,12 @@ namespace ln {
     _axis = bestAxis;
     _point = bestPoint;
 
-    auto l1 = std::make_shared<BNode>(BNode{});
-    auto r1 = std::make_shared<BNode>(BNode{});
-    auto l2 = std::make_shared<BNode>(BNode{});
-    auto r2 = std::make_shared<BNode>(BNode{});
+    auto l1 = std::make_shared<BNode>();
+    auto r1 = std::make_shared<BNode>();
+    auto l2 = std::make_shared<BNode>();
+    auto r2 = std::make_shared<BNode>();
     auto n1 = BNode{l1, lr.first, AxisNone, 0, r1};
-    auto n2 = BNode{l2, lr.first, AxisNone, 0, r2};
+    auto n2 = BNode{l2, lr.second, AxisNone, 0, r2};
 
     _lft = std::move(std::make_shared<BNode>(n1));
     _rgt = std::move(std::make_shared<BNode>(n2));

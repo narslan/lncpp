@@ -41,7 +41,8 @@ namespace ln {
     auto r = ray{point, v.normalize()};
 
     auto h = this->Intersect(r);
-    std::cout << h.return h.t >= v.length();
+    //std::cout << h.t << '\n';
+    return h.t >= v.length();
   }
   Paths Scene::GetPaths() const
   {

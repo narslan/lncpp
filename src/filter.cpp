@@ -23,7 +23,7 @@ namespace ln {
     }
 
     if(!(clipBox.contains(w))) {
-      std::cout << "[ " << w.x << ' ' << w.x << w.x << ' ' << " ]\n";
+      //std::cout << "[ " << w.x << ' ' << w.x << w.x << ' ' << " ]\n";
       return std::pair<Vec3, bool>(w, false);
     }
     return std::pair<Vec3, bool>(w, true);
