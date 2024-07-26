@@ -6,9 +6,6 @@ namespace ln {
   box::box(Vec3 min, Vec3 max)
       : _min(min)
       , _max(max){};
-  box::box()
-      : _min{}
-      , _max{} {};
 
   box& box::operator=(const box& other)
   {

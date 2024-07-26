@@ -9,7 +9,7 @@ namespace ln {
   struct box
   {
     box(Vec3 min, Vec3 max);
-    box();
+    box() = default;
     box& operator=(const box& other);
 
     Vec3 size() const;

@@ -70,8 +70,8 @@ int main(int argc, char const* argv[])
 
   ln::Scene sc{};
 
-  for(int a = 0; a < 10; a++) {
-    auto n = 30;
+  for(int a = 0; a < 50; a++) {
+    auto n = 200;
     auto xs = lowPassNoise(n, 0.3, 4);
     auto ys = lowPassNoise(n, 0.3, 4);
     auto zs = lowPassNoise(n, 0.3, 4);

@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.27)
 
 project(arch CXX )
-set (CMAKE_CXX_STANDARD 23)
+
+SET( CMAKE_CXX_FLAGS "-Ofast -DNDEBUG -std=c++20 -march=native -fpic -ftree-vectorize") 
 if (NOT DEFINED ARCH_DIR)
   set(ARCH_DIR "${CMAKE_CURRENT_LIST_DIR}")
 endif()
