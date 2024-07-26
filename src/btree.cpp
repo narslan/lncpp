@@ -167,12 +167,12 @@ namespace ln {
 
     for(auto shape : _shapes) {
       auto b = shape->boundingBox();
-      xs.push_back(b.min_.x);
-      xs.push_back(b.max_.x);
-      ys.push_back(b.min_.y);
-      ys.push_back(b.max_.y);
-      zs.push_back(b.min_.z);
-      zs.push_back(b.max_.z);
+      xs.push_back(b._min.x);
+      xs.push_back(b._max.x);
+      ys.push_back(b._min.y);
+      ys.push_back(b._max.y);
+      zs.push_back(b._min.z);
+      zs.push_back(b._max.z);
     }
     //TODO: check if we need sorting
     std::sort(xs.begin(), xs.end());

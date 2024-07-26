@@ -4,27 +4,29 @@
 #include <utility>
 namespace ln {
   box::box(Vec3 min, Vec3 max)
-      : min_(min)
-      , max_(max){};
+      : _min(min)
+      , _max(max){};
   box::box()
-      : min_{}
-      , max_{} {};
+      : _min{}
+      , _max{} {};
 
-  // box& box::operator=(box other)
-  // {
-  //   std::swap(min_, other.min_);
-  //   std::swap(max_, other.max_);
-  //   return *this;
-  // } //copy assignment
+  box& box::operator=(const box& other)
+  {
+    // std::swap(_min, other._min);
+    // std::swap(_max, other._max);
+    _min = other._min;
+    _max = other._max;
+    return *this;
+  } //copy assignment
 
   Vec3 box::size() const
   {
-    return max_ - min_;
+    return _max - _min;
   };
 
   Vec3 box::anchor(const Vec3& anch) const
   {
-    return min_ + this->size() * anch;
+    return _min + this->size() * anch;
   };
 
   Vec3 box::center() const
@@ -34,21 +36,21 @@ namespace ln {
 
   box box::extend(const box& b) const
   {
-    auto mnn = min_.min(b.min_);
-    auto mxx = max_.max(b.max_);
+    auto mnn = _min.min(b._min);
+    auto mxx = _max.max(b._max);
     return box{mnn, mxx};
   };
 
   bool box::contains(const Vec3& vec) const
   {
-    return ((vec.max(max_) == max_) && (vec.min(min_) == min_));
+    return ((vec.max(_max) == _max) && (vec.min(_min) == _min));
   };
 
   std::pair<double, double> box::intersect(const ray& r) const
   {
 
-    auto v1 = (min_ - r.origin_) / r.direction_;
-    auto v2 = (max_ - r.origin_) / r.direction_;
+    auto v1 = (_min - r.origin_) / r.direction_;
+    auto v2 = (_max - r.origin_) / r.direction_;
     return v1.intersectMax(v2);
   };
 
@@ -58,17 +60,17 @@ namespace ln {
     bool right;
     switch(ax) {
     case AxisX /*case*/:
-      left = min_.x <= point;
-      right = max_.x >= point;
+      left = _min.x <= point;
+      right = _max.x >= point;
       break;
     case AxisY /*case*/:
-      left = min_.y <= point;
-      right = max_.y >= point;
+      left = _min.y <= point;
+      right = _max.y >= point;
       break;
 
     case AxisZ /*case*/:
-      left = min_.z <= point;
-      right = max_.z >= point;
+      left = _min.z <= point;
+      right = _max.z >= point;
       break;
     case AxisNone:
       std::runtime_error(" should not reach here AxisNone");
