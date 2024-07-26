@@ -12,10 +12,10 @@ public:
 
   struct ClipFilter : public Filter
   {
-    ClipFilter(matrix, Vec3, Scene&);
-    matrix m_;
-    Vec3 eye_;
-    Scene& scene_;
+    ClipFilter(const matrix&, const Vec3&, const Scene&);
+    matrix _m;
+    Vec3 _eye;
+    const Scene& _scene;
     ~ClipFilter() override;
     std::pair<Vec3, bool> filter(const Vec3&) const override;
   };

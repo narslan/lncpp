@@ -94,11 +94,11 @@ namespace ln {
     Paths paths_result{};
     Path path{};
 
-    for(std::size_t i = 0; auto el : p) {
+    for(auto& el : p) {
       auto lr = f.filter(el);
 
       if(lr.second) {
-        path.p.push_back(lr.first);
+        path += lr.first;
       }
       else {
 
@@ -107,7 +107,6 @@ namespace ln {
         }
         path.p.clear();
       }
-      ++i;
     }
 
     if(path.p.size() > 1) {
@@ -119,19 +118,20 @@ namespace ln {
   Path Path::simplify(double threshold) const
   {
     if(p.size() < 3) {
-      return *(this);
+      return *this;
     }
 
     auto a = p.front();
     auto b = p.back();
     auto index = -1;
     auto distance = 0.0;
-
-    for(int i = 0; i < p.size(); i++) {
+    // std::cout << p.size() << '\n';
+    for(int i = 1; i < p.size() - 1; i++) {
       auto d = p[i].segmentDistance(a, b);
       if(d > distance) {
         index = i;
         distance = d;
+        //std::cout << std::format("{},{:.8e};", i, d) << '\n';
       }
     }
 
@@ -147,6 +147,7 @@ namespace ln {
       auto res = std::vector<Vec3>(r1.p.begin(), r1.p.end() - 1);
       auto p3 = Path{std::move(res)};
       p3 += r2;
+
       return p3;
     }
     else {

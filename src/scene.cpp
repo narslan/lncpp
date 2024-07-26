@@ -1,5 +1,6 @@
 #include "scene.hpp"
 #include "matrix.hpp"
+#include <iostream>
 #include <memory>
 
 namespace ln {
@@ -34,14 +35,13 @@ namespace ln {
   {
     return _tree.intersect(r);
   }
-  bool Scene::Visible(Vec3 eye, Vec3 point) const
+  bool Scene::Visible(const Vec3& eye, const Vec3& point) const
   {
     auto v = eye - point;
     auto r = ray{point, v.normalize()};
 
-    auto h = Intersect(r);
-
-    return h.t >= v.length();
+    auto h = this->Intersect(r);
+    std::cout << h.return h.t >= v.length();
   }
   Paths Scene::GetPaths() const
   {
@@ -72,26 +72,29 @@ namespace ln {
   Paths Scene::RenderWithMatrix(matrix m, Vec3 eye, double width, double height, double step)
   {
     Compile();
-    auto ps = GetPaths();
+    auto pts = GetPaths();
     if(step > 0) {
-      ps = ps.chop(step);
+      pts = pts.chop(step);
     }
 
     ClipFilter c{m, eye, *this};
-    ps = ps.filter(c);
+    pts = pts.filter(c);
     // for(auto p : ps.ps_) {
     //   p.print();
     // }
 
     if(step > 0) {
-      ps = ps.simplify(1e-6);
+      pts = pts.simplify(1e-6);
     }
-    m = translatev({1, 1, 0}).scale({width / 2, height / 2, 0});
-    ps = ps.transform(m);
+    std::cout << pts.size() << std::endl;
+
+    Vec3 v{width / 2, height / 2, 0};
+    m = translatev({1, 1, 0}).scale(v);
+
     // for(auto s : _shapes) {
     //   std::cout << s->Counter() << '\n';
     // }
-    return ps;
+    return pts.transform(m);
   };
 
 } // namespace ln

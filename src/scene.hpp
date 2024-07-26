@@ -13,7 +13,7 @@ public:
     void Compile();
     void Add(std::shared_ptr<Shape>);
     hit Intersect(const ray&) const;
-    bool Visible(Vec3 eye, Vec3 point) const;
+    bool Visible(const Vec3& eye, const Vec3& point) const;
     Paths GetPaths() const;
     Paths Render(Vec3 eye,
                  Vec3 center,

@@ -38,9 +38,10 @@ namespace ln {
     return box{mnn, mxx};
   };
 
-  bool box::contains(const Vec3& vec) const
+  bool box::contains(const Vec3& b) const
   {
-    return ((vec.max(_max) == _max) && (vec.min(_min) == _min));
+    return _min.x <= b.x && _max.x >= b.x && _min.y <= b.y && _max.y >= b.y && _min.z <= b.z &&
+           _max.z >= b.z;
   };
 
   std::pair<double, double> box::intersect(const ray& r) const

@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 #include <random>
 
 namespace ln {
@@ -68,20 +69,21 @@ namespace ln {
       return Vec3{a, b, c};
     };
 
-    constexpr double segmentDistance(const Vec3& rhsv, const Vec3& rhsw) const
+    constexpr double segmentDistance(const Vec3& v, const Vec3& w) const
     {
-      auto l2 = rhsv.distanceSquared(rhsw);
+      auto l2 = v.distanceSquared(w);
+
       if(l2 == 0.0) {
-        return distance(rhsv);
+        return distance(v);
       }
-      auto t = (*this - rhsv).dot(rhsw - rhsv) / l2;
+      auto t = (*this - v).dot(w - v) / l2;
       if(t < 0.0) {
-        return distance(rhsv);
+        return distance(v);
       }
       if(t > 1.0) {
-        return distance(rhsw);
+        return distance(w);
       }
-      return distance(rhsv + ((rhsw - rhsv) * t));
+      return distance(v + ((w - v) * t));
     };
     constexpr Vec3 normalize() const
     {
@@ -162,7 +164,7 @@ namespace ln {
     constexpr double minComponent() const
     {
 
-      return std::min({x, y, z});
+      return std::min(std::min(x, y), z);
     };
 
     constexpr Vec3 minAxis() const

@@ -25,7 +25,7 @@ namespace ln {
   box Paths::boundingBox() const
   {
     auto b = ps_.front().boundingBox();
-    for(auto p : ps_) {
+    for(auto& p : ps_) {
       b = b.extend(p.boundingBox());
     }
     return b;
@@ -40,7 +40,7 @@ namespace ln {
   Paths Paths::transform(const matrix& m) const
   {
     Paths result{};
-    for(auto p : ps_) {
+    for(auto& p : ps_) {
       result += p.transform(m);
     }
     return result;
@@ -66,8 +66,9 @@ namespace ln {
   Paths Paths::simplify(double threshold) const
   {
     Paths result{};
-    for(auto p : ps_) {
-      result += p.simplify(threshold);
+    for(auto& el : ps_) {
+
+      result += el.simplify(threshold);
     }
     return result;
   };
