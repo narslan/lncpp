@@ -1,9 +1,4 @@
 #pragma once
 namespace ln {
-	enum Axis {
-		AxisX = 0,
-		AxisY = 1,
-		AxisZ = 2,
-		AxisNone = 3,
-	};
+  enum Axis { AxisNone = 0, AxisX = 1, AxisY = 2, AxisZ = 3 };
 }

@@ -15,11 +15,22 @@ namespace ln {
     return radian * 180 / std::numbers::pi;
   }
 
+  // this is actually not median, but what go implementation had.
   double median(std::vector<double>& v)
   {
-    size_t n = v.size() / 2;
-    nth_element(v.begin(), v.begin() + n, v.end());
-    return v[n];
+    auto n = v.size();
+
+    if(n == 0) {
+      return 0;
+    }
+    if(n % 2 == 1) {
+      return v[n / 2];
+    }
+    else {
+      auto a = v[(n / 2) - 1];
+      auto b = v[(n / 2)];
+      return (a + b) / 2;
+    }
   }
 
   const Vec3 latLngToXYZ(double latd, double lngd, double radius)

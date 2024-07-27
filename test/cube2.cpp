@@ -40,7 +40,7 @@ int main(int argc, char const* argv[])
 
   // define rendering parameters
   constexpr auto width = 1920.0; // rendered width
-  constexpr auto height = 1920.0; // rendered height
+  constexpr auto height = 1200.0; // rendered height
   auto fovy = 30.0; // vertical field of view, degrees
   auto znear = 0.1; // near z plane
   auto zfar = 100.0; // far z plane

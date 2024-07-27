@@ -2,12 +2,13 @@
 
 namespace ln {
 
-  cube::cube(Vec3 n, Vec3 x)
-      : _min{n}
-      , _max{x}
-      , _b{n, x}
+  cube::cube(Vec3 min, Vec3 max)
+      : _min{min}
+      , _max{max}
+      , _b{min, max}
       , _counter{0} {};
   void cube::compile(){};
+
   box cube::boundingBox()
   {
     return _b;
@@ -40,14 +41,14 @@ namespace ln {
     auto t1 = std::min(std::min(n.x, n.y), n.z);
 
     if((t0 < 1e-3) && (t1 > 1e-3)) {
-      return hit(t1);
+      return hit{t1};
     }
 
     if((t0 >= 1e-3) && (t0 < t1)) {
-      return hit(t0);
+      return hit{t0};
     }
 
-    return hit();
+    return hit{};
   }
 
   Paths cube::paths()

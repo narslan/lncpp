@@ -3,8 +3,10 @@
 #include "box.hpp"
 #include "util.hpp"
 #include <algorithm>
+#include <fmt/core.h>
+#include <fmt/ranges.h>
+#include <iostream>
 #include <memory>
-
 namespace ln {
 
   BNode::BNode(std::shared_ptr<BNode>& lft,
@@ -48,7 +50,7 @@ namespace ln {
     auto dir = r.direction_;
     switch(_axis) {
     case AxisNone:
-      std::cout << "axisnone\n";
+      // std::cout << "axisnone\n";
       return intersectShapes(r);
     case AxisX:
       tsplit = (_point - org.x) / dir.x;
@@ -69,20 +71,20 @@ namespace ln {
     //TODO: the number of lines should be minimized.
     // They are so many as to avoid copying shared pointers.
     if(leftFirst) {
-      // first = _lft;
-      // second = _rgt;
+      auto first = _lft;
+      auto second = _rgt;
       if(tsplit > tmax || tsplit <= 0) {
-        return _lft->intersect(r, tmin, tmax);
+        return first->intersect(r, tmin, tmax);
       }
       else if(tsplit < tmin) {
-        return _rgt->intersect(r, tmin, tmax);
+        return second->intersect(r, tmin, tmax);
       }
       else {
-        auto h1 = _lft->intersect(r, tmin, tmax);
+        auto h1 = first->intersect(r, tmin, tmax);
         if(h1.t <= tsplit) {
           return h1;
         }
-        auto h2 = _rgt->intersect(r, tsplit, std::min(tmax, h1.t));
+        auto h2 = second->intersect(r, tsplit, std::min(tmax, h1.t));
         if(h1.t <= h2.t) {
           return h1;
         }
@@ -92,21 +94,20 @@ namespace ln {
       }
     }
     else {
-      // first = _rgt;
-      // second = _lft;
-
+      auto first = _rgt;
+      auto second = _lft;
       if(tsplit > tmax || tsplit <= 0) {
-        return _rgt->intersect(r, tmin, tmax);
+        return first->intersect(r, tmin, tmax);
       }
       else if(tsplit < tmin) {
-        return _lft->intersect(r, tmin, tmax);
+        return second->intersect(r, tmin, tmax);
       }
       else {
-        auto h1 = _rgt->intersect(r, tmin, tmax);
+        auto h1 = first->intersect(r, tmin, tmax);
         if(h1.t <= tsplit) {
           return h1;
         }
-        auto h2 = _lft->intersect(r, tsplit, std::min(tmax, h1.t));
+        auto h2 = second->intersect(r, tsplit, std::min(tmax, h1.t));
         if(h1.t <= h2.t) {
           return h1;
         }
@@ -171,6 +172,8 @@ namespace ln {
 
     for(auto shape : _shapes) {
       auto b = shape->boundingBox();
+      // fmt::print(
+      //   "[{} {} {}] [{} {} {}]\n", b._min.x, b._min.y, b._min.z, b._max.x, b._max.y, b._max.z);
       xs.push_back(b._min.x);
       xs.push_back(b._max.x);
       ys.push_back(b._min.y);
@@ -178,39 +181,52 @@ namespace ln {
       zs.push_back(b._min.z);
       zs.push_back(b._max.z);
     }
-    //TODO: check if we need sorting
+
     std::sort(xs.begin(), xs.end());
     std::sort(ys.begin(), ys.end());
-    std::sort(ys.begin(), ys.end());
-    auto mxs = median(xs);
-    auto mys = median(ys);
-    auto mzs = median(zs);
-
+    std::sort(zs.begin(), zs.end());
+    fmt::print("----auto xs\n");
+    fmt::print("[ ");
+    for(auto x : xs) {
+      std::cout << x;
+    }
+    fmt::print(" ]\n");
+    // fmt::print("{}\n", ys);
+    // fmt::print("{}\n", zs);
+    //TODO: check if we need sorting
+    // std::sort(xs.begin(), xs.end());
+    // std::sort(ys.begin(), ys.end());
+    // std::sort(zs.begin(), zs.end());
+    auto mx = median(xs);
+    auto my = median(ys);
+    auto mz = median(zs);
+    fmt::print("median mx: {}\n", mx);
     auto best = static_cast<int>(s * 0.85);
+
+    // std::cout << "mxs: " << mxs << "mys: " << mys << "mzs: " << mzs << "best: " << best
+    //         << std::endl;
 
     auto bestAxis = AxisNone;
     auto bestPoint = 0.0;
-    // std::cout << "mxs: " << mxs << "mys: " << mys << "mzs: " << mzs << "best: " << best
-    //           << std::endl;
-    auto sx = partitionScore(AxisX, mxs);
+    auto sx = partitionScore(AxisX, mx);
     if(sx < best) {
       best = sx;
       bestAxis = AxisX;
-      bestPoint = mxs;
+      bestPoint = mx;
     }
 
-    auto sy = partitionScore(AxisY, mys);
+    auto sy = partitionScore(AxisY, my);
     if(sy < best) {
       best = sy;
       bestAxis = AxisY;
-      bestPoint = mys;
+      bestPoint = my;
     }
 
-    auto sz = partitionScore(AxisZ, mzs);
+    auto sz = partitionScore(AxisZ, mz);
     if(sz < best) {
       best = sz;
       bestAxis = AxisZ;
-      bestPoint = mzs;
+      bestPoint = mz;
     }
 
     if(bestAxis == AxisNone) {
@@ -228,11 +244,12 @@ namespace ln {
     auto n1 = BNode{l1, lr.first, AxisNone, 0, r1};
     auto n2 = BNode{l2, lr.second, AxisNone, 0, r2};
 
-    _lft = std::move(std::make_shared<BNode>(n1));
-    _rgt = std::move(std::make_shared<BNode>(n2));
+    _lft = std::make_shared<BNode>(n1);
+    _rgt = std::make_shared<BNode>(n2);
 
     _lft->split(depth + 1);
     _rgt->split(depth + 1);
+    std::cout << depth << '\n';
     _shapes.clear();
     //std::cout << depth << std::endl;
     //In the go implementation there was a line that nullifies shapes member.
@@ -265,7 +282,7 @@ namespace ln {
     int left = 0;
     int right = 0;
 
-    for(auto shape : _shapes) {
+    for(auto& shape : _shapes) {
       auto b = shape->boundingBox();
       auto lr = b.partition(ax, point);
       if(lr.first) {
