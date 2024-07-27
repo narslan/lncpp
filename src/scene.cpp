@@ -10,7 +10,7 @@ namespace ln {
       , _tree{}
   { }
 
-  void Scene::Add(std::shared_ptr<Shape> sh)
+  void Scene::Add(const std::shared_ptr<Shape>& sh)
   {
     _shapes.push_back(sh);
   };
@@ -26,7 +26,7 @@ namespace ln {
     }
   };
 
-  unsigned Scene::Size()
+  unsigned Scene::Size() const
   {
     return _shapes.size();
   };
@@ -39,8 +39,9 @@ namespace ln {
   {
     auto v = eye - point;
     auto r = ray{point, v.normalize()};
-
+    // std::cout << v.normalize() << point << std::endl;
     auto h = this->Intersect(r);
+
     return h.t >= v.length();
   }
   Paths Scene::GetPaths() const
@@ -79,7 +80,7 @@ namespace ln {
 
     ClipFilter c{m, eye, *this};
     pts = pts.filter(c);
-    std::cout << pts.size() << std::endl;
+    //std::cout << pts.size() << std::endl;
 
     // for(auto p : ps.ps_) {
     //   p.print();

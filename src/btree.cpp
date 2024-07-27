@@ -48,72 +48,53 @@ namespace ln {
     bool leftFirst;
     auto org = r._origin;
     auto dir = r._direction;
-    switch(_axis) {
-    case AxisNone:
-      // std::cout << "axisnone\n";
+
+    if(_axis == AxisNone) {
       return intersectShapes(r);
-    case AxisX:
-      tsplit = (_point - org.x) / dir.x;
-      leftFirst = (org.x < _point) || (org.x == _point && dir.x <= 0);
-      break;
-    case AxisY:
-      tsplit = (_point - org.y) / dir.y;
-      leftFirst = (org.y < _point) || (org.y == _point && dir.y <= 0);
-      break;
-    case AxisZ:
-      tsplit = (_point - org.z) / dir.z;
-      leftFirst = (org.z < _point) || (org.z == _point && dir.z <= 0);
-      break;
     }
 
-    // std::shared_ptr<BNode> first = std::make_shared<BNode>();
-    // std::shared_ptr<BNode> second = std::make_shared<BNode>();
-    //TODO: the number of lines should be minimized.
-    // They are so many as to avoid copying shared pointers.
+    if(_axis == AxisX) {
+      tsplit = (_point - org.x) / dir.x;
+      //std::cout << tsplit << "\n";
+      leftFirst = (org.x < _point) || (org.x == _point && dir.x <= 0);
+    }
+    else if(_axis == AxisY) {
+      tsplit = (_point - org.y) / dir.y;
+      leftFirst = (org.y < _point) || (org.y == _point && dir.y <= 0);
+    }
+    else if(_axis == AxisZ) {
+      tsplit = (_point - org.z) / dir.z;
+      leftFirst = (org.z < _point) || (org.z == _point && dir.z <= 0);
+    }
+
+    std::shared_ptr<BNode> first = std::make_shared<BNode>();
+    std::shared_ptr<BNode> second = std::make_shared<BNode>();
+
     if(leftFirst) {
-      auto first = _lft;
-      auto second = _rgt;
-      if(tsplit > tmax || tsplit <= 0) {
-        return first->intersect(r, tmin, tmax);
-      }
-      else if(tsplit < tmin) {
-        return second->intersect(r, tmin, tmax);
-      }
-      else {
-        auto h1 = first->intersect(r, tmin, tmax);
-        if(h1.t <= tsplit) {
-          return h1;
-        }
-        auto h2 = second->intersect(r, tsplit, std::min(tmax, h1.t));
-        if(h1.t <= h2.t) {
-          return h1;
-        }
-        else {
-          return h2;
-        }
-      }
+      first = _lft;
+      second = _rgt;
     }
     else {
-      auto first = _rgt;
-      auto second = _lft;
-      if(tsplit > tmax || tsplit <= 0) {
-        return first->intersect(r, tmin, tmax);
+      first = _rgt;
+      second = _lft;
+    }
+    if(tsplit > tmax || tsplit <= 0) {
+      return first->intersect(r, tmin, tmax);
+    }
+    else if(tsplit < tmin) {
+      return second->intersect(r, tmin, tmax);
+    }
+    else {
+      auto h1 = first->intersect(r, tmin, tsplit);
+      if(h1.t <= tsplit) {
+        return h1;
       }
-      else if(tsplit < tmin) {
-        return second->intersect(r, tmin, tmax);
+      auto h2 = second->intersect(r, tsplit, std::min(tmax, h1.t));
+      if(h1.t <= h2.t) {
+        return h1;
       }
       else {
-        auto h1 = first->intersect(r, tmin, tmax);
-        if(h1.t <= tsplit) {
-          return h1;
-        }
-        auto h2 = second->intersect(r, tsplit, std::min(tmax, h1.t));
-        if(h1.t <= h2.t) {
-          return h1;
-        }
-        else {
-          return h2;
-        }
+        return h2;
       }
     }
   };
@@ -130,18 +111,8 @@ namespace ln {
     return h;
   };
 
-  BTree::BTree(std::shared_ptr<BNode>& node)
-      : _root(node)
-  { }
-  BTree::BTree(BTree& lft,
-               std::initializer_list<std::shared_ptr<Shape>> init,
-               Axis axis,
-               double point,
-               BTree& rgt)
-      : _root(std::make_shared<BNode>(lft._root, init, axis, point, rgt._root))
-  { }
-  BTree::BTree() { }
-  BTree::BTree(std::initializer_list<std::shared_ptr<Shape>> init) { }
+  //BTree::BTree() { }
+  //BTree::BTree(std::initializer_list<std::shared_ptr<Shape>> init) { }
 
   BTree& BTree::operator=(BTree other)
   {
@@ -296,7 +267,9 @@ namespace ln {
   hit BTree::intersect(const ray& r) const
   {
     auto tlr = _box.intersect(r);
+
     if((tlr.second < tlr.first) || (tlr.second <= 0)) {
+      //std::cout << tlr.first << ' ' << tlr.second << '\n';
       return hit{};
     }
     return _root->intersect(r, tlr.first, tlr.second);

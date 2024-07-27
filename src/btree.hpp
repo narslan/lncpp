@@ -37,11 +37,10 @@ namespace ln {
   {
 
 public:
-    explicit BTree(std::shared_ptr<BNode>& BNode);
-    BTree(BTree&, std::initializer_list<std::shared_ptr<Shape>>, Axis, double, BTree&);
-    BTree(std::initializer_list<std::shared_ptr<Shape>> init);
+    // explicit BTree(std::shared_ptr<BNode>& BNode);
+    // BTree(std::initializer_list<std::shared_ptr<Shape>> init);
     BTree(std::vector<std::shared_ptr<Shape>> init);
-    BTree();
+    BTree() = default;
     ~BTree() = default;
     BTree& operator=(BTree other);
     hit intersect(const ray& r) const;

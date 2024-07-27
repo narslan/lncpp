@@ -11,7 +11,7 @@ public:
     ~Scene() = default;
 
     void Compile();
-    void Add(std::shared_ptr<Shape>);
+    void Add(const std::shared_ptr<Shape>&);
     hit Intersect(const ray&) const;
     bool Visible(const Vec3& eye, const Vec3& point) const;
     Paths GetPaths() const;
@@ -26,7 +26,7 @@ public:
                  double step);
     Paths RenderWithMatrix(matrix m, Vec3 eye, double width, double height, double step);
 
-    unsigned Size();
+    unsigned Size() const;
 
 private:
     std::vector<std::shared_ptr<Shape>> _shapes;

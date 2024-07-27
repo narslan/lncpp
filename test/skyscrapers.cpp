@@ -18,7 +18,7 @@ int main(int argc, char const* argv[])
 
   ln::Scene s{};
   double n = 3;
-
+  auto counter = 0;
   for(double x = -n; x <= n; x++) {
 
     for(double y = -n; y <= n; y++) {
@@ -28,13 +28,14 @@ int main(int argc, char const* argv[])
         auto fx = x;
         auto fy = y;
         auto fz = z * 3 + 1;
-        ln::cube c{{fx - p, fy - p, 0}, {fx + p, fy + p, fz}};
 
         if(x == 2 && y == 1) {
           continue;
         }
+        ln::cube c{{fx - p, fy - p, 0}, {fx + p, fy + p, fz}};
         auto cs = std::make_shared<ln::cube>(c);
         s.Add(cs);
+        counter++;
       }
     }
   }
@@ -51,7 +52,7 @@ int main(int argc, char const* argv[])
   auto znear = 0.1; // near z plane
   auto zfar = 100.0; // far z plane
   auto step = 0.01; // how
-  std::cout << s.Size();
+  //std::cout << counter << ' ' << s.Size() << '\n';
   auto ps = s.Render(eye, center, up, width, height, fovy, znear, zfar, step);
   std::ofstream svgFile("scrapers.svg");
   svgFile << ps.toSVG(width, height);

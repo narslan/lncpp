@@ -21,7 +21,7 @@ namespace ln {
     auto w = _m.mulPositionW(v);
     //std::cout << "[ " << w.x << ' ' << w.y << ' ' << w.z << ' ' << " ]\n";
     if(!(_scene.Visible(_eye, v))) {
-      //  std::cout << "[ " << w.x << ' ' << w.y << ' ' << w.z << " ]\n";
+      //std::cout << "[ " << w.x << ' ' << w.y << ' ' << w.z << " ]\n";
       return std::pair<Vec3, bool>(w, false);
     }
 

@@ -91,29 +91,6 @@ namespace ln {
       return Vec3{x / l, y / l, z / l};
     };
 
-    constexpr std::pair<double, double> intersectMax(const Vec3& rhs) const
-    {
-      //TODO: need fix here.
-      double x1{x};
-      double x2{rhs.x};
-      double y1{y};
-      double y2{rhs.y};
-      double z1{z};
-      double z2{rhs.z};
-
-      if(x1 > x2) {
-        std::swap(x1, x2);
-      }
-      if(y1 > y2) {
-        std::swap(y1, y2);
-      }
-      if(z1 > z2) {
-        std::swap(z1, z2);
-      }
-
-      return std::pair<double, double>(std::max({x1, y1, z1}), std::min({x2, y2, z2}));
-    };
-
     constexpr double lengthSquared() const
     {
       return x * x + y * y + z * z;
@@ -180,6 +157,10 @@ namespace ln {
         return Vec3{0, 1, 0};
       }
       return Vec3{0, 0, 1};
+    };
+    friend std::ostream& operator<<(std::ostream& stream, const Vec3& v)
+    {
+      return std::cout << "[" << v.x << ' ' << v.y << ' ' << v.z << "]";
     };
   };
   //This is an additional external vector constructor for making random vectors.

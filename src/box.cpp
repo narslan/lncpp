@@ -47,9 +47,29 @@ namespace ln {
   std::pair<double, double> box::intersect(const ray& r) const
   {
 
-    auto v1 = (_min - r._origin) / r._direction;
-    auto v2 = (_max - r._origin) / r._direction;
-    return v1.intersectMax(v2);
+    auto x1 = (_min.x - r._origin.x) / r._direction.x;
+    auto y1 = (_min.y - r._origin.y) / r._direction.y;
+    auto z1 = (_min.z - r._origin.z) / r._direction.z;
+    auto x2 = (_max.x - r._origin.x) / r._direction.x;
+    auto y2 = (_max.y - r._origin.y) / r._direction.y;
+    auto z2 = (_max.z - r._origin.z) / r._direction.z;
+
+    if(x1 > x2) {
+      std::swap(x1, x2);
+    }
+    if(y1 > y2) {
+      std::swap(y1, y2);
+    }
+    if(z1 > z2) {
+      std::swap(z1, z2);
+    }
+    auto t1 = std::max(std::max(x1, y1), z1);
+    auto t2 = std::min(std::min(x2, y2), z2);
+
+    return std::pair<double, double>(t1, t2);
+    // auto v1 = (_min - r._origin) / r._direction;
+    // auto v2 = (_max - r._origin) / r._direction;
+    // return v1.intersectMax(v2);
   };
 
   std::pair<bool, bool> box::partition(Axis ax, double point) const
