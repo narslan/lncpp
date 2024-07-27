@@ -41,7 +41,6 @@ namespace ln {
     auto r = ray{point, v.normalize()};
 
     auto h = this->Intersect(r);
-    std::cout << h.t << ' ' << v.length() << '\n';
     return h.t >= v.length();
   }
   Paths Scene::GetPaths() const
@@ -80,7 +79,7 @@ namespace ln {
 
     ClipFilter c{m, eye, *this};
     pts = pts.filter(c);
-    //std::cout << pts.size() << std::endl;
+    std::cout << pts.size() << std::endl;
 
     // for(auto p : ps.ps_) {
     //   p.print();

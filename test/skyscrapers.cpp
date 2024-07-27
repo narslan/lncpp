@@ -46,7 +46,7 @@ int main(int argc, char const* argv[])
   auto height = 1024.0; // rendered height
   auto fovy = 100.0; // vertical field of view, degrees
   auto znear = 0.1; // near z plane
-  auto zfar = 10.0; // far z plane
+  auto zfar = 100.0; // far z plane
   auto step = 0.01; // how
 
   auto ps = s.Render(eye, center, up, width, height, fovy, znear, zfar, step);
