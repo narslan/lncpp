@@ -4,6 +4,12 @@ namespace ln {
       : t{_t} {};
   hit::hit()
       : t{INF} {};
+
+  hit& hit::operator=(const hit& other)
+  {
+    t = other.t;
+    return *this;
+  }
   const hit& hit::min(const hit& b) const
   {
     if(t <= b.t) {

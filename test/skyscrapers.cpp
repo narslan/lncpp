@@ -22,17 +22,20 @@ int main(int argc, char const* argv[])
   for(double x = -n; x <= n; x++) {
 
     for(double y = -n; y <= n; y++) {
-      auto p = dice() * 0.25 + 0.2;
+      for(double z = 0.8; z < 0.9; z += 0.2) {
+        auto p = z * 0.25 + 0.2;
 
-      auto fx = x;
-      auto fy = y;
-      auto fz = dice() * 3 + 1;
-      ln::cube c{{fx - p, fy - p, 0}, {fx + p, fy + p, fz}};
-      auto cs = std::make_shared<ln::cube>(c);
-      if(x == 2 && y == 1) {
-        continue;
+        auto fx = x;
+        auto fy = y;
+        auto fz = z * 3 + 1;
+        ln::cube c{{fx - p, fy - p, 0}, {fx + p, fy + p, fz}};
+
+        if(x == 2 && y == 1) {
+          continue;
+        }
+        auto cs = std::make_shared<ln::cube>(c);
+        s.Add(cs);
       }
-      s.Add(cs);
     }
   }
 
@@ -48,10 +51,10 @@ int main(int argc, char const* argv[])
   auto znear = 0.1; // near z plane
   auto zfar = 100.0; // far z plane
   auto step = 0.01; // how
-
+  std::cout << s.Size();
   auto ps = s.Render(eye, center, up, width, height, fovy, znear, zfar, step);
   std::ofstream svgFile("scrapers.svg");
-  svgFile << ps.toSVG(1024.0, 1024.0);
+  svgFile << ps.toSVG(width, height);
   svgFile.close();
   return 0;
 }

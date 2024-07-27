@@ -121,6 +121,7 @@ namespace ln {
   {
     hit h{};
     for(auto& shape : _shapes) {
+      //std::cout << "ok" << std::endl;
       auto hs = shape->intersect(r);
       if(hs.t < h.t) {
         h = hs;

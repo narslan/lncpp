@@ -8,6 +8,7 @@ namespace ln {
     hit(double);
     // no hit.
     hit();
+    hit& operator=(const hit& b);
     const hit& min(const hit& b) const;
     const hit& max(const hit& b) const;
     const bool ok() const;
