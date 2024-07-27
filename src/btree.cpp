@@ -185,22 +185,18 @@ namespace ln {
     std::sort(xs.begin(), xs.end());
     std::sort(ys.begin(), ys.end());
     std::sort(zs.begin(), zs.end());
-    fmt::print("----auto xs\n");
-    fmt::print("[ ");
-    for(auto x : xs) {
-      std::cout << x;
-    }
-    fmt::print(" ]\n");
+    // fmt::print("----auto xs\n");
+    // fmt::print("[ ");
+    // for(auto x : xs) {
+    //   std::cout << x;
+    // }
+    // fmt::print(" ]\n");
     // fmt::print("{}\n", ys);
     // fmt::print("{}\n", zs);
-    //TODO: check if we need sorting
-    // std::sort(xs.begin(), xs.end());
-    // std::sort(ys.begin(), ys.end());
-    // std::sort(zs.begin(), zs.end());
     auto mx = median(xs);
     auto my = median(ys);
     auto mz = median(zs);
-    fmt::print("median mx: {}\n", mx);
+    //fmt::print("median mx: {}\n", mx);
     auto best = static_cast<int>(s * 0.85);
 
     // std::cout << "mxs: " << mxs << "mys: " << mys << "mzs: " << mzs << "best: " << best
@@ -244,11 +240,11 @@ namespace ln {
     auto n1 = BNode{l1, lr.first, AxisNone, 0, r1};
     auto n2 = BNode{l2, lr.second, AxisNone, 0, r2};
 
-    _lft = std::make_shared<BNode>(n1);
-    _rgt = std::make_shared<BNode>(n2);
+    _lft = std::move(std::make_shared<BNode>(n1));
+    _rgt = std::move(std::make_shared<BNode>(n2));
 
-    _lft->split(depth + 1);
-    _rgt->split(depth + 1);
+    this->_lft->split(depth + 1);
+    this->_rgt->split(depth + 1);
     std::cout << depth << '\n';
     _shapes.clear();
     //std::cout << depth << std::endl;

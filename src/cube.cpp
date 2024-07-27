@@ -11,6 +11,8 @@ namespace ln {
 
   box cube::boundingBox()
   {
+    std::cout << "[ " << _b._min.x << ' ' << _b._min.y << ' ' << _b._min.z << " ]"
+              << "[ " << _b._max.x << ' ' << _b._max.y << ' ' << _b._max.z << " ]\n";
     return _b;
   }
   const bool cube::contains(const Vec3& v, double f)
