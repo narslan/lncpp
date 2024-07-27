@@ -198,7 +198,7 @@ namespace ln {
     auto y = m_data[4] * v.x + m_data[5] * v.y + m_data[6] * v.z + m_data[7];
     auto z = m_data[8] * v.x + m_data[9] * v.y + m_data[10] * v.z + m_data[11];
     auto w = m_data[12] * v.x + m_data[13] * v.y + m_data[14] * v.z + m_data[15];
-    return Vec3{x, y, z} / w;
+    return Vec3{x / w, y / w, z / w};
   }
   matrix lookAt(Vec3 eye, Vec3 center, Vec3 ups)
   {

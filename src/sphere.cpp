@@ -25,8 +25,8 @@ namespace ln {
   const hit sphere::intersect(const ray& r)
   {
     auto radius = radius_;
-    auto to = r.origin_ - center_;
-    auto b = to.dot(r.direction_);
+    auto to = r._origin - center_;
+    auto b = to.dot(r._direction);
     auto c = to.dot(to) - (radius * radius);
     auto d = (b * b) - c;
     if(d > 0) {

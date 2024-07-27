@@ -94,10 +94,13 @@ namespace ln {
     Paths paths_result{};
     Path path{};
 
-    for(auto& el : p) {
+    for(auto el : p) {
+      //std::cout << "[ " << v.x << ' ' << v.x << ' ' << v.x << ' ' << " ]\n";
+      // std::cout << "{" << el.x << ' ' << el.y << ' ' << el.z << "}\n";
       auto lr = f.filter(el);
 
       if(lr.second) {
+        // std::cout << "ok" << std::endl;
         path += lr.first;
       }
       else {

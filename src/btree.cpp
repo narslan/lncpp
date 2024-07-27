@@ -46,8 +46,8 @@ namespace ln {
   {
     double tsplit;
     bool leftFirst;
-    auto org = r.origin_;
-    auto dir = r.direction_;
+    auto org = r._origin;
+    auto dir = r._direction;
     switch(_axis) {
     case AxisNone:
       // std::cout << "axisnone\n";
@@ -172,8 +172,8 @@ namespace ln {
 
     for(auto shape : _shapes) {
       auto b = shape->boundingBox();
-      // fmt::print(
-      //   "[{} {} {}] [{} {} {}]\n", b._min.x, b._min.y, b._min.z, b._max.x, b._max.y, b._max.z);
+      //fmt::print(
+      //    "[{} {} {}] [{} {} {}]\n", b._min.x, b._min.y, b._min.z, b._max.x, b._max.y, b._max.z);
       xs.push_back(b._min.x);
       xs.push_back(b._max.x);
       ys.push_back(b._min.y);
@@ -243,14 +243,9 @@ namespace ln {
     _lft = std::move(std::make_shared<BNode>(n1));
     _rgt = std::move(std::make_shared<BNode>(n2));
 
-    this->_lft->split(depth + 1);
-    this->_rgt->split(depth + 1);
-    std::cout << depth << '\n';
+    _lft->split(depth + 1);
+    _rgt->split(depth + 1);
     _shapes.clear();
-    //std::cout << depth << std::endl;
-    //In the go implementation there was a line that nullifies shapes member.
-    // With a comment "only needed at leaf nodes"
-    //this->_shapes = nullptr; //nullify at leaf nodes
   }
 
   std::pair<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shape>>>

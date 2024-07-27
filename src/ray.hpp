@@ -8,8 +8,8 @@ public:
     Vec3 position(double t) const;
 
     ~ray() = default;
-    Vec3 origin_;
-    Vec3 direction_;
+    Vec3 _origin;
+    Vec3 _direction;
   };
 
 } // namespace ln

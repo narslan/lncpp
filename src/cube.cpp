@@ -11,8 +11,8 @@ namespace ln {
 
   box cube::boundingBox()
   {
-    std::cout << "[ " << _b._min.x << ' ' << _b._min.y << ' ' << _b._min.z << " ]"
-              << "[ " << _b._max.x << ' ' << _b._max.y << ' ' << _b._max.z << " ]\n";
+    //std::cout << "[ " << _b._min.x << ' ' << _b._min.y << ' ' << _b._min.z << " ]"
+    //          << "[ " << _b._max.x << ' ' << _b._max.y << ' ' << _b._max.z << " ]\n";
     return _b;
   }
   const bool cube::contains(const Vec3& v, double f)
@@ -33,14 +33,14 @@ namespace ln {
   const hit cube::intersect(const ray& r)
   {
     _counter++;
-    auto n = (_min - r.origin_) / r.direction_;
-    auto f = (_max - r.origin_) / r.direction_;
+    auto n = (_min - r._origin) / r._direction;
+    auto f = (_max - r._origin) / r._direction;
 
     n = n.min(f);
     f = n.max(f);
 
     auto t0 = std::max(std::max(n.x, n.y), n.z);
-    auto t1 = std::min(std::min(n.x, n.y), n.z);
+    auto t1 = std::min(std::min(f.x, f.y), f.z);
 
     if((t0 < 1e-3) && (t1 > 1e-3)) {
       return hit{t1};

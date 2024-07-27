@@ -41,7 +41,7 @@ namespace ln {
     auto r = ray{point, v.normalize()};
 
     auto h = this->Intersect(r);
-    //std::cout << h.t << '\n';
+    std::cout << h.t << ' ' << v.length() << '\n';
     return h.t >= v.length();
   }
   Paths Scene::GetPaths() const
@@ -64,7 +64,7 @@ namespace ln {
                       double far,
                       double step)
   {
-    double aspect = double(width * 1.0 / height);
+    double aspect = width / height;
     auto m = lookAt(eye, center, up);
     auto m2 = m.perspective(fovy, aspect, near, far);
     return RenderWithMatrix(m2, eye, width, height, step);
@@ -80,6 +80,8 @@ namespace ln {
 
     ClipFilter c{m, eye, *this};
     pts = pts.filter(c);
+    //std::cout << pts.size() << std::endl;
+
     // for(auto p : ps.ps_) {
     //   p.print();
     // }
@@ -87,7 +89,6 @@ namespace ln {
     if(step > 0) {
       pts = pts.simplify(1e-6);
     }
-    std::cout << pts.size() << std::endl;
 
     Vec3 v{width / 2, height / 2, 0};
     m = translatev({1, 1, 0}).scale(v);

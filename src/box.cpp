@@ -47,8 +47,8 @@ namespace ln {
   std::pair<double, double> box::intersect(const ray& r) const
   {
 
-    auto v1 = (_min - r.origin_) / r.direction_;
-    auto v2 = (_max - r.origin_) / r.direction_;
+    auto v1 = (_min - r._origin) / r._direction;
+    auto v2 = (_max - r._origin) / r._direction;
     return v1.intersectMax(v2);
   };
 

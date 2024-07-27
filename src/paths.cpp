@@ -58,6 +58,7 @@ namespace ln {
   {
     Paths result{};
     for(auto p : ps_) {
+      //auto pf =
       result += p.filter(f);
     }
     return result;
