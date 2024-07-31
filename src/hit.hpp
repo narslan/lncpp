@@ -15,4 +15,5 @@ namespace ln {
     ~hit() = default;
   };
   static constexpr double INF = 1e+9;
+  static constexpr double EPS = 1e-9;
 } // namespace ln

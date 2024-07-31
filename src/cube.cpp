@@ -7,7 +7,7 @@ namespace ln {
       , _max{max}
       , _b{min, max}
       , _counter{0} {};
-  void cube::compile(){};
+  void cube::compile() {};
 
   box cube::boundingBox()
   {
@@ -75,8 +75,4 @@ namespace ln {
                  {{x2, y2, z1}, {x2, y2, z2}}};
   };
 
-  unsigned cube::Counter()
-  {
-    return _counter;
-  };
 } // namespace ln

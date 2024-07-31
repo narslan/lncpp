@@ -12,7 +12,7 @@ namespace ln {
       , box_{center - radius, center + radius}
   { }
 
-  void sphere::compile(){};
+  void sphere::compile() {};
   box sphere::boundingBox()
   {
     return box_;
@@ -69,8 +69,5 @@ namespace ln {
 
     return paths;
   };
-  unsigned sphere::Counter()
-  {
-    return 0;
-  };
+
 } // namespace ln

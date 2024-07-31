@@ -17,7 +17,6 @@ namespace ln {
     const bool contains(const Vec3&, double) override;
     const hit intersect(const ray&) override;
     Paths paths() override;
-    unsigned Counter() override;
   };
 
 } // namespace ln
