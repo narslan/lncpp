@@ -2,14 +2,17 @@
 #include "box.hpp"
 
 namespace ln {
-  triangle::triangle(Vec3 v1, Vec3 v2, Vec3 v3, box b)
+  triangle::triangle(Vec3 v1, Vec3 v2, Vec3 v3)
       : e1{v1}
       , e2{v2}
       , e3{v3}
-      , _box{b}
-  { }
+  {
+    auto min = e1.min(e2).min(e3);
+    auto max = e1.max(e2).max(v3);
+    _box = box{min, max};
+  }
 
-  void triangle::compile() {};
+  void triangle::compile(){};
   box triangle::boundingBox()
   {
     return _box;

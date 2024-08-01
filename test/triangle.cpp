@@ -5,9 +5,9 @@
 
 int main(int argc, char const* argv[])
 {
-  ln::triangle t{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+  ln::triangle t{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
 
-  auto cs = std::make_shared<ln::cube>(c);
+  auto cs = std::make_shared<ln::triangle>(t);
   ln::Scene s{};
   s.Add(cs);
   // define camera parameters
@@ -24,7 +24,7 @@ int main(int argc, char const* argv[])
   auto step = 0.01; // how
 
   auto ps = s.Render(eye, center, up, width, height, fovy, znear, zfar, step);
-  std::ofstream svgFile("cube.svg");
+  std::ofstream svgFile("triangle.svg");
   svgFile << ps.toSVG(1024.0, 1024.0);
   svgFile.close();
   return 0;

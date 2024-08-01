@@ -23,10 +23,7 @@ namespace ln {
   {
     return Paths{};
   };
-  unsigned EmptyShape::Counter()
-  {
-    return 0;
-  };
+
   EmptyShape::EmptyShape(){};
   EmptyShape::~EmptyShape(){};
 } // namespace ln

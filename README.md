@@ -8,7 +8,7 @@ There are some differences with original implementation.
 Two implementations produce incompatible images.
 I couldn't manage to make a %100 port. There are some missing shapes.
 
-- [ ] Triangle shape
+- [ x ] Triangle shape
 - [ ] Function shape
 - [ ] Mesh shape
 - [ ] Cylinder shape

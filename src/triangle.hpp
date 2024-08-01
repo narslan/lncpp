@@ -4,7 +4,7 @@ namespace ln {
 
   struct triangle : public Shape
   {
-    triangle(Vec3, Vec3, Vec3, box);
+    triangle(Vec3, Vec3, Vec3);
     ~triangle() = default;
 
     Vec3 e1;
