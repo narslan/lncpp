@@ -5,9 +5,8 @@ namespace ln {
   cube::cube(Vec3 min, Vec3 max)
       : _min{min}
       , _max{max}
-      , _b{min, max}
-      , _counter{0} {};
-  void cube::compile() {};
+      , _b{min, max} {};
+  void cube::compile(){};
 
   box cube::boundingBox()
   {
@@ -32,7 +31,7 @@ namespace ln {
 
   const hit cube::intersect(const ray& r)
   {
-    _counter++;
+
     auto n = (_min - r._origin) / r._direction;
     auto f = (_max - r._origin) / r._direction;
 

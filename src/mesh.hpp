@@ -1,22 +1,22 @@
 #pragma once
-#include "box.hpp"
+#include "btree.hpp"
 #include "shape.hpp"
-
+#include "triangle.hpp"
 namespace ln {
 
-  struct cube : public Shape
+  struct mesh : public Shape
   {
-    cube(Vec3 n, Vec3 x);
-    ~cube() = default;
+    mesh(std::vector<triangle>);
+    ~mesh() = default;
 
-    Vec3 _min;
-    Vec3 _max;
-    box _b;
     void compile() override;
     box boundingBox() override;
     const bool contains(const Vec3&, double) override;
     const hit intersect(const ray&) override;
     Paths paths() override;
-  };
 
+    box _box;
+    BTree _tree;
+    std::vector<triangle> _triangles;
+  };
 } // namespace ln
