@@ -1,5 +1,6 @@
 #include "mesh.hpp"
 #include "btree.hpp"
+#include "triangle.hpp"
 #include <memory>
 
 namespace ln {
@@ -21,7 +22,7 @@ namespace ln {
     if(_tree.isEmpty()) {
       std::vector<std::shared_ptr<Shape>> shapes;
       for(auto el : _triangles) {
-        auto tr = std::make_shared<Shape>(el);
+        auto tr = std::make_shared<triangle>(el);
         shapes.push_back(tr);
       }
       _tree = BTree{shapes};
