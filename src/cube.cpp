@@ -40,7 +40,7 @@ namespace ln {
 
     auto t0 = std::max(std::max(n.x, n.y), n.z);
     auto t1 = std::min(std::min(f.x, f.y), f.z);
-    // std::cout << t0 << ' ' << t1 << std::endl;
+
     if((t0 < 1e-3) && (t1 > 1e-3)) {
       return hit{t1};
     }

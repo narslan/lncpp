@@ -100,7 +100,7 @@ namespace ln {
       auto lr = f.filter(el);
 
       if(lr.second) {
-        //std::cout << "ok" << std::endl;
+
         path += lr.first;
       }
       else {

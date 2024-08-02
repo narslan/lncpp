@@ -2,7 +2,6 @@
 #include "hit.hpp"
 #include "ray.hpp"
 #include "shape.hpp"
-#include <initializer_list>
 #include <memory>
 namespace ln {
   struct BNode
@@ -14,8 +13,8 @@ namespace ln {
           std::shared_ptr<BNode>& rgt);
     BNode();
     ~BNode() = default;
-    BNode& operator=(BNode other);
-
+    //BNode& operator=(BNode other);
+    BNode& operator=(const BNode& other);
     std::shared_ptr<BNode> _lft;
     std::vector<std::shared_ptr<Shape>> _shapes;
     std::shared_ptr<BNode> _rgt;
@@ -37,8 +36,6 @@ namespace ln {
   {
 
 public:
-    // explicit BTree(std::shared_ptr<BNode>& BNode);
-    // BTree(std::initializer_list<std::shared_ptr<Shape>> init);
     BTree(std::vector<std::shared_ptr<Shape>> init);
     BTree() = default;
     ~BTree() = default;

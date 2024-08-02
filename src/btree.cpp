@@ -3,9 +3,6 @@
 #include "box.hpp"
 #include "util.hpp"
 #include <algorithm>
-#include <fmt/core.h>
-#include <fmt/ranges.h>
-#include <iostream>
 #include <memory>
 namespace ln {
 
@@ -21,75 +18,80 @@ namespace ln {
       , _rgt{rgt}
   { }
 
-  // size_t BNode::howMany()
-  // {
-  //   return count;
-  // }
   BNode::BNode()
       : _lft{nullptr}
-      , _shapes{nullptr}
+      , _shapes{}
       , _axis{AxisNone}
-      , _point{0}
+      , _point{}
       , _rgt{nullptr}
   { }
 
-  BNode& BNode::operator=(BNode other)
+  // BNode& BNode::operator=(BNode other)
+  // {
+  //   std::swap(_lft, other._lft);
+  //   std::swap(_shapes, other._shapes);
+  //   std::swap(_axis, other._axis);
+  //   std::swap(_point, other._point);
+  //   std::swap(_rgt, other._rgt);
+  //   return *this;
+  // }
+
+  BNode& BNode::operator=(const BNode& other)
   {
-    std::swap(_lft, other._lft);
-    std::swap(_shapes, other._shapes);
-    std::swap(_axis, other._axis);
-    std::swap(_point, other._point);
-    std::swap(_rgt, other._rgt);
+    _lft = other._lft;
+    _shapes = other._shapes;
+    _axis = other._axis;
+    _point = other._point;
+    _rgt = other._rgt;
     return *this;
   }
+
   hit BNode::intersect(const ray& r, double tmin, double tmax) const
   {
+
     double tsplit;
     bool leftFirst;
-    auto org = r._origin;
-    auto dir = r._direction;
 
     if(_axis == AxisNone) {
       return intersectShapes(r);
     }
-
     if(_axis == AxisX) {
-      tsplit = (_point - org.x) / dir.x;
-      //std::cout << tsplit << "\n";
-      leftFirst = (org.x < _point) || (org.x == _point && dir.x <= 0);
+      tsplit = (_point - r._origin.x) / r._direction.x;
+      leftFirst = (r._origin.x < _point) || ((r._origin.x == _point) && (r._direction.x <= 0));
     }
-    else if(_axis == AxisY) {
-      tsplit = (_point - org.y) / dir.y;
-      leftFirst = (org.y < _point) || (org.y == _point && dir.y <= 0);
+    if(_axis == AxisY) {
+      //  std::cout << _point << ' ' << r._origin.y << ' ' << r._direction.y << std::endl;
+      tsplit = (_point - r._origin.y) / r._direction.y;
+      leftFirst = (r._origin.y < _point) || ((r._origin.y == _point) && (r._direction.y <= 0));
     }
-    else if(_axis == AxisZ) {
-      tsplit = (_point - org.z) / dir.z;
-      leftFirst = (org.z < _point) || (org.z == _point && dir.z <= 0);
+    if(_axis == AxisZ) {
+      tsplit = (_point - r._origin.z) / r._direction.z;
+      leftFirst = (r._origin.z < _point) || ((r._origin.z == _point) && (r._direction.z <= 0));
     }
 
-    std::shared_ptr<BNode> first = std::make_shared<BNode>();
-    std::shared_ptr<BNode> second = std::make_shared<BNode>();
+    BNode first{};
+    BNode second{};
 
     if(leftFirst) {
-      first = _lft;
-      second = _rgt;
+      first = *_lft;
+      second = *_rgt;
     }
     else {
-      first = _rgt;
-      second = _lft;
+      first = *_rgt;
+      second = *_lft;
     }
-    if(tsplit > tmax || tsplit <= 0) {
-      return first->intersect(r, tmin, tmax);
+    if((tsplit > tmax) || (tsplit <= 0)) {
+      return first.intersect(r, tmin, tmax);
     }
     else if(tsplit < tmin) {
-      return second->intersect(r, tmin, tmax);
+      return second.intersect(r, tmin, tmax);
     }
     else {
-      auto h1 = first->intersect(r, tmin, tsplit);
+      auto h1 = first.intersect(r, tmin, tsplit);
       if(h1.t <= tsplit) {
         return h1;
       }
-      auto h2 = second->intersect(r, tsplit, std::min(tmax, h1.t));
+      auto h2 = second.intersect(r, tsplit, std::min(tmax, h1.t));
       if(h1.t <= h2.t) {
         return h1;
       }
@@ -98,11 +100,12 @@ namespace ln {
       }
     }
   };
+
   hit BNode::intersectShapes(const ray& r) const
   {
     hit h{};
+
     for(auto& shape : _shapes) {
-      //std::cout << "ok" << std::endl;
       auto hs = shape->intersect(r);
       if(hs.t < h.t) {
         h = hs;
@@ -110,9 +113,6 @@ namespace ln {
     }
     return h;
   };
-
-  //BTree::BTree() { }
-  //BTree::BTree(std::initializer_list<std::shared_ptr<Shape>> init) { }
 
   BTree& BTree::operator=(BTree other)
   {
@@ -144,8 +144,7 @@ namespace ln {
 
     for(auto shape : _shapes) {
       auto b = shape->boundingBox();
-      //fmt::print(
-      //    "[{} {} {}] [{} {} {}]\n", b._min.x, b._min.y, b._min.z, b._max.x, b._max.y, b._max.z);
+
       xs.push_back(b._min.x);
       xs.push_back(b._max.x);
       ys.push_back(b._min.y);
@@ -157,22 +156,12 @@ namespace ln {
     std::sort(xs.begin(), xs.end());
     std::sort(ys.begin(), ys.end());
     std::sort(zs.begin(), zs.end());
-    // fmt::print("----auto xs\n");
-    // fmt::print("[ ");
-    // for(auto x : xs) {
-    //   std::cout << x;
-    // }
-    // fmt::print(" ]\n");
-    // fmt::print("{}\n", ys);
-    // fmt::print("{}\n", zs);
+
     auto mx = median(xs);
     auto my = median(ys);
     auto mz = median(zs);
     //fmt::print("median mx: {}\n", mx);
     auto best = static_cast<int>(s * 0.85);
-
-    // std::cout << "mxs: " << mxs << "mys: " << mys << "mzs: " << mzs << "best: " << best
-    //         << std::endl;
 
     auto bestAxis = AxisNone;
     auto bestPoint = 0.0;
@@ -212,17 +201,17 @@ namespace ln {
     auto n1 = BNode{l1, lr.first, AxisNone, 0, r1};
     auto n2 = BNode{l2, lr.second, AxisNone, 0, r2};
 
-    _lft = std::move(std::make_shared<BNode>(n1));
-    _rgt = std::move(std::make_shared<BNode>(n2));
+    _lft = std::make_shared<BNode>(n1);
+    _rgt = std::make_shared<BNode>(n2);
 
     _lft->split(depth + 1);
     _rgt->split(depth + 1);
-    _shapes.clear();
   }
 
   std::pair<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shape>>>
   BNode::partition(int size, Axis axis, double point) const
   {
+
     std::vector<std::shared_ptr<Shape>> left;
     std::vector<std::shared_ptr<Shape>> right;
 
@@ -236,12 +225,14 @@ namespace ln {
         right.push_back(s);
       }
     }
+
     return std::pair<std::vector<std::shared_ptr<Shape>>, std::vector<std::shared_ptr<Shape>>>(
         left, right);
   };
 
   int BNode::partitionScore(Axis ax, double point) const
   {
+
     int left = 0;
     int right = 0;
 
@@ -269,9 +260,9 @@ namespace ln {
     auto tlr = _box.intersect(r);
 
     if((tlr.second < tlr.first) || (tlr.second <= 0)) {
-      //std::cout << tlr.first << ' ' << tlr.second << '\n';
       return hit{};
     }
+
     return _root->intersect(r, tlr.first, tlr.second);
   };
 

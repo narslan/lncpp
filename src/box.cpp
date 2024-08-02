@@ -65,7 +65,6 @@ namespace ln {
     }
     auto t1 = std::max(std::max(x1, y1), z1);
     auto t2 = std::min(std::min(x2, y2), z2);
-
     return std::pair<double, double>(t1, t2);
     // auto v1 = (_min - r._origin) / r._direction;
     // auto v2 = (_max - r._origin) / r._direction;

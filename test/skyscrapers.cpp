@@ -17,8 +17,8 @@ int main(int argc, char const* argv[])
 {
 
   ln::Scene s{};
-  double n = 3;
-  auto counter = 0;
+  double n = 1;
+
   for(double x = -n; x <= n; x++) {
 
     for(double y = -n; y <= n; y++) {
@@ -35,7 +35,6 @@ int main(int argc, char const* argv[])
         ln::cube c{{fx - p, fy - p, 0}, {fx + p, fy + p, fz}};
         auto cs = std::make_shared<ln::cube>(c);
         s.Add(cs);
-        counter++;
       }
     }
   }
