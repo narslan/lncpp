@@ -3,12 +3,14 @@
 ## WIP
 
 This is a `c++` port of vector based 3d renderer [ln](https://github.com/fogleman/ln).
-
 There are some differences with original implementation.
 Two implementations produce incompatible images.
-I couldn't manage to make a %100 port. There are some missing shapes.
+I couldn't manage to make a %100 port.
+There are some missing shapes. `lncpp` is faster.
 
-- [ x ] Triangle shape
+- [ x ] Cube
+- [ x ] Sphere
+- [ x ] Triangle
 - [ ] Function shape
 - [ ] Mesh shape
 - [ ] Cylinder shape
@@ -19,7 +21,7 @@ I couldn't manage to make a %100 port. There are some missing shapes.
 
 ### Usage
 
-The sample programs are available under `[examples](examples)`.
+The sample programs are available under `examples`.
 
 ```sh
 mkdir build && cd build

@@ -21,7 +21,7 @@ namespace ln {
   BNode::BNode()
       : _lft{nullptr}
       , _shapes{}
-      , _axis{AxisNone}
+      , _axis{}
       , _point{}
       , _rgt{nullptr}
   { }
@@ -48,7 +48,6 @@ namespace ln {
 
   hit BNode::intersect(const ray& r, double tmin, double tmax) const
   {
-
     double tsplit;
     bool leftFirst;
 
@@ -60,7 +59,6 @@ namespace ln {
       leftFirst = (r._origin.x < _point) || ((r._origin.x == _point) && (r._direction.x <= 0));
     }
     if(_axis == AxisY) {
-      //  std::cout << _point << ' ' << r._origin.y << ' ' << r._direction.y << std::endl;
       tsplit = (_point - r._origin.y) / r._direction.y;
       leftFirst = (r._origin.y < _point) || ((r._origin.y == _point) && (r._direction.y <= 0));
     }

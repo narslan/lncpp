@@ -33,7 +33,6 @@ int main(int argc, char const* argv[])
       auto sp = ln::outlineSphere{eye, up, v, 0.45};
       auto spp = std::make_shared<ln::outlineSphere>(sp);
       sc.Add(spp);
-      /* code */
     }
   }
 

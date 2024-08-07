@@ -11,8 +11,6 @@ set(ARCH_INCLUDE_DIRS ${ARCH_DIR}/src)
 
 file(GLOB LN_SOURCES  "src/*.cpp" "src/*.hpp" )
 
-
-
 # foreach(_cpptarget ln_test)
 #   add_executable(${_cpptarget} test/${_cpptarget}.cpp )
 #   target_sources(${_cpptarget} PUBLIC test/${_cpptarget}.cpp ${LN_SOURCES})
@@ -41,10 +39,11 @@ foreach(_scraperstarget skyscrapers)
 add_executable(${_scraperstarget} test/${_scraperstarget}.cpp )
 target_sources(${_scraperstarget} PUBLIC test/${_scraperstarget}.cpp ${LN_SOURCES})
 endforeach()
-# foreach(_triangle triangle)
-# add_executable(${_triangle} test/${_triangle}.cpp )
-# target_sources(${_triangle} PUBLIC test/${_triangle}.cpp ${LN_SOURCES})
-# endforeach()
+
+foreach(_triangle triangle)
+add_executable(${_triangle} test/${_triangle}.cpp )
+target_sources(${_triangle} PUBLIC test/${_triangle}.cpp ${LN_SOURCES})
+endforeach()
 
 foreach(_mesh mesh)
 add_executable(${_mesh} test/${_mesh}.cpp )
