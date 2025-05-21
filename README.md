@@ -3,10 +3,7 @@
 ## WIP
 
 This is a `c++` port of vector based 3d renderer [ln](https://github.com/fogleman/ln).
-There are some differences with original implementation.
-Two implementations produce incompatible images.
-I couldn't manage to make a %100 port.
-There are some missing shapes. `lncpp` is faster.
+There are some differences with original implementation. `lncpp` is faster.
 
 - [ x ] Cube
 - [ x ] Sphere
